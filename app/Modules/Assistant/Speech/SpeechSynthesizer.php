@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
 /**
- * Gives the barista a voice through OpenRouter's OpenAI-compatible
+ * Gives the solution_consultant a voice through OpenRouter's OpenAI-compatible
  * /audio/speech endpoint. Gemini voices only answer with raw 16-bit PCM, which
  * a browser cannot play, so it is wrapped into a WAV file here. The WAV is kept
  * on disk by text so a line that is spoken twice is only paid for once.

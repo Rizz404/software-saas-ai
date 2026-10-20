@@ -2,7 +2,7 @@
 
 namespace App\Modules\Assistant\Tools\Handlers;
 
-use App\Models\CafeKnowledgeItem;
+use App\Models\CompanyKnowledgeItem;
 use App\Modules\Assistant\Tools\Tool;
 use App\Modules\Assistant\Tools\ToolContext;
 use App\Modules\Assistant\Tools\ToolResult;
@@ -23,7 +23,7 @@ final class SearchKnowledgeTool implements Tool
             'type' => 'function',
             'function' => [
                 'name' => $this->name(),
-                'description' => 'Search the cafe\'s approved knowledge base for facts about the cafe: policies, facilities, events and catering, location, and FAQs. Always use this instead of answering cafe-fact questions from memory. Returns up to 5 matching entries.',
+                'description' => 'Search the company\'s approved knowledge base for facts about the saas: policies, facilities, events and catering, location, and FAQs. Always use this instead of answering company-fact questions from memory. Returns up to 5 matching entries.',
                 'parameters' => [
                     'type' => 'object',
                     'properties' => [
@@ -42,13 +42,13 @@ final class SearchKnowledgeTool implements Tool
 
     public function execute(ToolContext $context, array $arguments): ToolResult
     {
-        $items = $this->search->handle($context->cafe, (string) ($arguments['query'] ?? ''), $arguments['category'] ?? null);
+        $items = $this->search->handle($context->company, (string) ($arguments['query'] ?? ''), $arguments['category'] ?? null);
 
         if ($items->isEmpty()) {
             return new ToolResult('No matching knowledge base entry was found. Do not guess the answer — tell the guest you will check with the team, or call request_human_handover.');
         }
 
-        return ToolResult::json($items->map(fn (CafeKnowledgeItem $item) => [
+        return ToolResult::json($items->map(fn (CompanyKnowledgeItem $item) => [
             'category' => $item->category,
             'title' => $item->translatedTitle($context->locale),
             'body' => $item->translatedBody($context->locale),

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Concerns\ResolvesCurrentCafe;
+use App\Http\Controllers\Concerns\ResolvesCurrentCompany;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ReplyToHandoverRequest;
 use App\Models\HandoverRequest;
@@ -15,37 +15,37 @@ use Illuminate\View\View;
 
 class HandoverController extends Controller
 {
-    use ResolvesCurrentCafe;
+    use ResolvesCurrentCompany;
 
     public function index(Request $request): View
     {
-        $cafe = $this->currentCafe($request);
+        $company = $this->currentCompany($request);
 
         $status = $request->query('status', HandoverRequest::STATUS_OPEN);
 
-        $handovers = HandoverRequest::whereHas('conversation', fn ($q) => $q->where('cafe_id', $cafe->id))
+        $handovers = HandoverRequest::whereHas('conversation', fn ($q) => $q->where('company_id', $company->id))
             ->where('status', $status)
             ->with('conversation')
             ->latest()
             ->paginate(20)
             ->withQueryString();
 
-        return view('admin.handovers.index', compact('cafe', 'handovers', 'status'));
+        return view('admin.handovers.index', compact('company', 'handovers', 'status'));
     }
 
     public function show(Request $request, HandoverRequest $handover): View
     {
-        $cafe = $this->currentCafe($request);
+        $company = $this->currentCompany($request);
         Gate::authorize('view', $handover);
 
         $handover->load('conversation.messages');
 
-        return view('admin.handovers.show', compact('cafe', 'handover'));
+        return view('admin.handovers.show', compact('company', 'handover'));
     }
 
     public function reply(ReplyToHandoverRequest $request, HandoverRequest $handover, ReplyToHandover $replyToHandover): RedirectResponse
     {
-        $this->currentCafe($request);
+        $this->currentCompany($request);
 
         $replyToHandover->handle($handover, $request->validated('message'));
 
@@ -54,11 +54,11 @@ class HandoverController extends Controller
 
     public function resolve(Request $request, HandoverRequest $handover, ResolveHandover $resolveHandover): RedirectResponse
     {
-        $this->currentCafe($request);
+        $this->currentCompany($request);
         Gate::authorize('update', $handover);
 
         $resolveHandover->handle($handover, $request->user());
 
-        return redirect()->route('admin.handovers.index')->with('status', 'Handover resolved — the AI Barista is back in the conversation.');
+        return redirect()->route('admin.handovers.index')->with('status', 'Handover resolved — the AI SaaS Consultant is back in the conversation.');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Cafe;
+use App\Models\Company;
 use App\Models\Conversation;
 use App\Modules\Conversation\Enums\ConversationStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -19,7 +19,7 @@ class ConversationFactory extends Factory
     public function definition(): array
     {
         return [
-            'cafe_id' => Cafe::factory(),
+            'company_id' => Company::factory(),
             'guest_token' => (string) Str::uuid(),
             'locale' => 'id',
             'status' => ConversationStatus::Active->value,

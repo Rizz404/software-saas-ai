@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Cafe;
+use App\Models\Company;
 use App\Models\Conversation;
 use App\Modules\Assistant\Tools\ToolContext;
 use App\Modules\Assistant\Tools\ToolExecutor;
@@ -20,11 +20,11 @@ class ToolRegistryTest extends TestCase
 
         $this->assertSame([
             'search_knowledge',
-            'search_menu',
-            'get_menu_item',
-            'search_seating',
-            'check_table_availability',
-            'create_reservation_request',
+            'search_products',
+            'get_product',
+            'search_consultants',
+            'check_consultation_availability',
+            'create_consultation_request',
             'request_human_handover',
         ], $names);
     }
@@ -46,10 +46,10 @@ class ToolRegistryTest extends TestCase
 
     public function test_an_unknown_tool_call_gets_a_plain_answer_and_no_card(): void
     {
-        $conversation = Conversation::factory()->for(Cafe::factory())->create();
+        $conversation = Conversation::factory()->for(Company::factory())->create();
 
         $result = app(ToolExecutor::class)->execute(
-            new ToolContext($conversation->cafe, $conversation, 'en'),
+            new ToolContext($conversation->company, $conversation, 'en'),
             'drop_all_tables',
             [],
         );

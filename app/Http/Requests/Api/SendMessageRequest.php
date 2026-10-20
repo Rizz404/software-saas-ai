@@ -25,22 +25,23 @@ class SendMessageRequest extends FormRequest
             'guest_token' => ['required', 'uuid'],
             'message' => ['required', 'string', 'max:2000'],
             'scene' => ['nullable', Rule::in(Conversation::SCENES)],
-            'selected_menu_item' => ['nullable', 'string', 'max:120'],
-            'selected_seating_area' => ['nullable', 'string', 'max:120'],
+            'selected_product' => ['nullable', 'string', 'max:120'],
+            'selected_consultant' => ['nullable', 'string', 'max:120'],
             'selected_facility' => ['nullable', 'integer', 'min:1'],
-            'reservation' => ['nullable', 'array'],
-            'reservation.reservation_date' => ['nullable', 'date_format:Y-m-d'],
-            'reservation.time_slot' => ['nullable', 'regex:/^\d{2}:\d{2}$/'],
-            'reservation.guests' => ['nullable', 'integer', 'min:1', 'max:30'],
-            'reservation.occasion' => ['nullable', 'string', 'max:30'],
-            'reservation.seating_area_slug' => ['nullable', 'string', 'max:120'],
+            'consultation' => ['nullable', 'array'],
+            'consultation.consultation_date' => ['nullable', 'date_format:Y-m-d'],
+            'consultation.time_slot' => ['nullable', 'regex:/^\d{2}:\d{2}$/'],
+            'consultation.participants' => ['nullable', 'integer', 'min:1', 'max:6'],
+            'consultation.product_slug' => ['nullable', 'string', 'max:120'],
+            'consultation.goal' => ['nullable', 'string', 'max:30'],
+            'consultation.consultant_slug' => ['nullable', 'string', 'max:120'],
         ];
     }
 
     /**
-     * Where the guest is in the UI, as the barista's conversation remembers it.
+     * Where the guest is in the UI, as the solution_consultant's conversation remembers it.
      *
-     * @return array{scene?: ?string, selected_menu_item?: ?string, selected_seating_area?: ?string, selected_facility?: ?int, reservation?: array<string, mixed>}
+     * @return array{scene?: ?string, selected_product?: ?string, selected_consultant?: ?string, selected_facility?: ?int, consultation?: array<string, mixed>}
      */
     public function uiContext(): array
     {
@@ -48,11 +49,11 @@ class SendMessageRequest extends FormRequest
 
         return [
             'scene' => $data['scene'] ?? null,
-            'selected_menu_item' => $data['selected_menu_item'] ?? null,
+            'selected_product' => $data['selected_product'] ?? null,
             'selected_facility' => $data['selected_facility'] ?? null,
-            'selected_seating_area' => $data['selected_seating_area'] ?? ($data['reservation']['seating_area_slug'] ?? null),
-            ...array_key_exists('reservation', $data)
-                ? ['reservation' => array_filter($data['reservation'] ?? [], fn ($value) => $value !== null && $value !== '')]
+            'selected_consultant' => $data['selected_consultant'] ?? ($data['consultation']['consultant_slug'] ?? null),
+            ...array_key_exists('consultation', $data)
+                ? ['consultation' => array_filter($data['consultation'] ?? [], fn ($value) => $value !== null && $value !== '')]
                 : [],
         ];
     }

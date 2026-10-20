@@ -6,7 +6,7 @@ use App\Models\ConversationMessage;
 use App\Models\HandoverRequest;
 
 /**
- * A team member answers the guest in a conversation the barista handed over.
+ * A team member answers the guest in a conversation the solution_consultant handed over.
  */
 class ReplyToHandover
 {

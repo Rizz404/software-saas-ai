@@ -2,19 +2,19 @@
 
 return [
     'message' => [
-        'intro' => 'Hello, I would like to request a table.',
+        'intro' => 'The right software. Room to grow. Explore SaaS products, compare plans, and find your workflow with an AI consultant.',
         'name' => 'Name',
         'date' => 'Date',
         'time' => 'Time',
-        'guests' => 'Guests',
-        'seating' => 'Seating',
-        'occasion' => 'Occasion',
-        'special' => 'Special Request',
+        'participants' => 'participants',
+        'consultants' => 'Consultant',
+        'goal' => 'Goal',
+        'special' => 'Requirements',
         'reference' => 'Reference',
     ],
     'subject' => [
-        'reservation' => 'Table reservation',
-        'staff' => 'Question for the cafe team',
-        'staff_message' => 'Hello, I would like to speak with the cafe team.',
+        'product demo' => 'Software SaaS AI product demo request',
+        'staff' => 'Software SaaS AI product demo request',
+        'staff_message' => 'Software SaaS AI product demo request',
     ],
 ];

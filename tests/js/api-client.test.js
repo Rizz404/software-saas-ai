@@ -14,21 +14,21 @@ test('postJson sends JSON with the CSRF token and returns the parsed body', asyn
     stubBrowser(async (url, init) => {
         sent = { url, init };
 
-        return { ok: true, status: 201, json: async () => ({ reference: 'RS-ABC123' }) };
+        return { ok: true, status: 201, json: async () => ({ reference: 'IT-ABC123' }) };
     });
 
-    const result = await postJson('/demo/reservation', { guests: 2 });
+    const result = await postJson('/demo/consultation', { participants: 2 });
 
-    assert.deepEqual(result, { ok: true, status: 201, body: { reference: 'RS-ABC123' } });
+    assert.deepEqual(result, { ok: true, status: 201, body: { reference: 'IT-ABC123' } });
     assert.equal(sent.init.method, 'POST');
     assert.equal(sent.init.headers['X-CSRF-TOKEN'], 'token-123');
-    assert.equal(sent.init.body, JSON.stringify({ guests: 2 }));
+    assert.equal(sent.init.body, JSON.stringify({ participants: 2 }));
 });
 
 test('postJson reports an HTTP error as a result, not an exception', async () => {
-    stubBrowser(async () => ({ ok: false, status: 422, json: async () => ({ errors: { guests: ['Check this field.'] } }) }));
+    stubBrowser(async () => ({ ok: false, status: 422, json: async () => ({ errors: { participants: ['Check this field.'] } }) }));
 
-    const result = await postJson('/demo/reservation', {});
+    const result = await postJson('/demo/consultation', {});
 
     assert.equal(result.ok, false);
     assert.equal(result.status, 422);
@@ -39,7 +39,7 @@ test('postJson throws an Error with status 0 when the network fails', async () =
         throw new TypeError('fetch failed');
     });
 
-    await assert.rejects(postJson('/demo/barista/message', {}), (error) => error.status === 0);
+    await assert.rejects(postJson('/demo/solution_consultant/message', {}), (error) => error.status === 0);
 });
 
 test('getJson puts the query in the URL', async () => {
@@ -51,7 +51,7 @@ test('getJson puts the query in the URL', async () => {
         return { ok: true, status: 200, json: async () => ({ messages: [] }) };
     });
 
-    await getJson('/demo/barista/history', { guest_token: 'abc' });
+    await getJson('/demo/solution_consultant/history', { guest_token: 'abc' });
 
-    assert.equal(requested, '/demo/barista/history?guest_token=abc');
+    assert.equal(requested, '/demo/solution_consultant/history?guest_token=abc');
 });

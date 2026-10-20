@@ -1,0 +1,75 @@
+<?php
+
+return [
+    'trusted_proxies' => array_values(array_filter(array_map('trim', explode(',', (string) env('TRUSTED_PROXIES', ''))))),
+    'locales' => [
+        'id',
+        'en',
+        'ja',
+    ],
+    'default_locale' => 'id',
+    'avatar_image' => 'images/saas/consultant.png',
+    'scenes' => [
+        'home' => [
+            'image' => 'images/saas/studio.png',
+            'character' => 'images/saas/consultant.png',
+            'focus' => 'center 45%',
+            'focusMobile' => '60% 45%',
+            'anchor' => 'right',
+            'text' => 'top',
+        ],
+        'products' => [
+            'image' => 'images/saas/studio.png',
+            'character' => 'images/saas/consultant.png',
+            'focus' => 'center 45%',
+            'focusMobile' => '60% 45%',
+            'anchor' => 'right',
+            'text' => 'top',
+        ],
+        'consultants' => [
+            'image' => 'images/saas/studio.png',
+            'character' => 'images/saas/consultant.png',
+            'focus' => 'center 45%',
+            'focusMobile' => '60% 45%',
+            'anchor' => 'right',
+            'text' => 'top',
+        ],
+        'facilities' => [
+            'image' => 'images/saas/studio.png',
+            'character' => 'images/saas/consultant.png',
+            'focus' => 'center 45%',
+            'focusMobile' => '60% 45%',
+            'anchor' => 'right',
+            'text' => 'top',
+        ],
+        'info' => [
+            'image' => 'images/saas/studio.png',
+            'character' => 'images/saas/consultant.png',
+            'focus' => 'center 45%',
+            'focusMobile' => '60% 45%',
+            'anchor' => 'right',
+            'text' => 'top',
+        ],
+        'staff' => [
+            'image' => 'images/saas/studio.png',
+            'character' => 'images/saas/consultant.png',
+            'focus' => 'center 45%',
+            'focusMobile' => '60% 45%',
+            'anchor' => 'right',
+            'text' => 'top',
+        ],
+        'consultation' => [
+            'image' => 'images/saas/studio.png',
+            'character' => 'images/saas/consultant.png',
+            'focus' => 'center 45%',
+            'focusMobile' => '60% 45%',
+            'anchor' => 'right',
+            'text' => 'top',
+        ],
+    ],
+    'scene_artwork' => [
+        'product' => 'products',
+        'consultant' => 'consultants',
+        'facility' => 'facilities',
+    ],
+];

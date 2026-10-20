@@ -2,12 +2,12 @@
 
 namespace App\Modules\Assistant\Tools\Support;
 
-use App\Models\Cafe;
-use App\Models\MenuItem;
-use App\Models\SeatingArea;
+use App\Models\Company;
+use App\Models\Consultant;
+use App\Models\Product;
 
 /**
- * The compact facts about a menu item or seating area that both the model and
+ * The compact facts about a service or consultant that both the model and
  * the guest's cards are given.
  */
 final class CatalogSummaries
@@ -15,18 +15,21 @@ final class CatalogSummaries
     /**
      * @return array<string, mixed>
      */
-    public static function menuItem(MenuItem $item, Cafe $cafe, string $locale): array
+    public static function product(Product $item, Company $company, string $locale): array
     {
         return [
-            'menu_item_slug' => $item->slug,
+            'product_slug' => $item->slug,
             'name' => $item->translatedName($locale),
             'category' => $item->category,
             'price' => (float) $item->price,
-            'currency' => $cafe->currency,
-            'serving' => $item->serving,
+            'price_type' => 'demo_monthly_subscription',
+            'subscription_plans' => $item->subscription_plans ?? [],
+            'trial_days' => $item->trial_days,
+            'currency' => $company->currency,
+            'delivery_model' => $item->delivery_model,
             'tags' => $item->tags ?? [],
-            'allergens' => $item->allergens ?? [],
-            'is_sold_out' => $item->is_sold_out,
+            'prerequisites' => $item->prerequisites ?? [],
+            'is_unavailable' => $item->is_unavailable,
             'image_url' => $item->image_source,
         ];
     }
@@ -34,28 +37,28 @@ final class CatalogSummaries
     /**
      * @return array<string, mixed>
      */
-    public static function seatingArea(SeatingArea $area, Cafe $cafe, string $locale): array
+    public static function consultant(Consultant $area, Company $company, string $locale): array
     {
         return [
             'name' => $area->translatedName($locale),
-            'area_type' => $area->area_type,
-            'min_guests' => $area->min_guests,
-            'max_guests' => $area->max_guests,
+            'specialty' => $area->specialty,
+            'min_participants' => $area->min_participants,
+            'max_participants' => $area->max_participants,
             'features' => $area->features ?? [],
-            'reservation_fee' => (float) $area->reservation_fee,
-            'minimum_spend' => $area->minimum_spend !== null ? (float) $area->minimum_spend : null,
-            'currency' => $cafe->currency,
+            'consultation_fee' => (float) $area->consultation_fee,
+            'project_budget_from' => $area->project_budget_from !== null ? (float) $area->project_budget_from : null,
+            'currency' => $company->currency,
             'thumbnail_url' => $area->images->first()?->image_source,
         ];
     }
 
-    public static function menuItemBySlug(Cafe $cafe, string $slug): ?MenuItem
+    public static function productBySlug(Company $company, string $slug): ?Product
     {
-        return $cafe->menuItems()->where('is_active', true)->where('slug', $slug)->first();
+        return $company->products()->where('is_active', true)->where('slug', $slug)->first();
     }
 
-    public static function seatingAreaBySlug(Cafe $cafe, string $slug): ?SeatingArea
+    public static function consultantBySlug(Company $company, string $slug): ?Consultant
     {
-        return $cafe->seatingAreas()->where('is_active', true)->where('slug', $slug)->first();
+        return $company->consultants()->where('is_active', true)->where('slug', $slug)->first();
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Modules\Experience\Presenters;
 
 /**
- * Artwork for a scene: an illustrated background, the barista cut-out and
+ * Artwork for a scene: an illustrated background, the solution_consultant cut-out and
  * where she stands, so the scene's text and panels stay clear of her.
  */
 final class StageBackdrop
@@ -13,8 +13,8 @@ final class StageBackdrop
      */
     public static function for(string $scene): array
     {
-        $scenes = config('cafe.scenes');
-        $artwork = $scenes[config('cafe.scene_artwork')[$scene] ?? $scene] ?? $scenes['home'];
+        $scenes = config('company.scenes');
+        $artwork = $scenes[config('company.scene_artwork')[$scene] ?? $scene] ?? $scenes['home'];
 
         return [
             'image' => asset($artwork['image']),
@@ -29,6 +29,6 @@ final class StageBackdrop
 
     public static function avatar(): string
     {
-        return asset(config('cafe.avatar_image'));
+        return asset(config('company.avatar_image'));
     }
 }

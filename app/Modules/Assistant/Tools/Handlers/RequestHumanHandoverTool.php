@@ -21,13 +21,13 @@ final class RequestHumanHandoverTool implements Tool
             'type' => 'function',
             'function' => [
                 'name' => $this->name(),
-                'description' => 'Hand this conversation over to a human cafe team member. Use this for special requests, complaints, group reservations, private events, custom or bulk orders, payment problems, allergy questions the menu data cannot settle, or any question you cannot answer confidently from the available tools. Always write a clear summary so staff do not need to ask the guest to repeat themselves.',
+                'description' => 'Hand the conversation to the company team for custom proposals, special schedules, more than six participants, contract or authorization questions, complaints, or facts the available data cannot answer. Include an actionable summary.',
                 'parameters' => [
                     'type' => 'object',
                     'properties' => [
                         'reason' => [
                             'type' => 'string',
-                            'enum' => ['special_request', 'complaint', 'group_reservation', 'private_event', 'custom_order', 'payment_issue', 'low_confidence'],
+                            'enum' => ['special_request', 'complaint', 'group_consultation', 'scope_review', 'custom_proposal', 'contract_question', 'low_confidence'],
                         ],
                         'summary' => ['type' => 'string', 'description' => 'What the guest wants and the relevant context gathered so far, written for a team member who has not seen this conversation'],
                     ],

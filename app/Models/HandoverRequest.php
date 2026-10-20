@@ -25,13 +25,13 @@ class HandoverRequest extends Model
 
     public const REASON_COMPLAINT = HandoverReason::Complaint->value;
 
-    public const REASON_GROUP_RESERVATION = HandoverReason::GroupReservation->value;
+    public const REASON_GROUP_CONSULTATION = HandoverReason::GroupConsultation->value;
 
-    public const REASON_PRIVATE_EVENT = HandoverReason::PrivateEvent->value;
+    public const REASON_SCOPE_REVIEW = HandoverReason::ScopeReview->value;
 
-    public const REASON_CUSTOM_ORDER = HandoverReason::CustomOrder->value;
+    public const REASON_CUSTOM_PROPOSAL = HandoverReason::CustomProposal->value;
 
-    public const REASON_PAYMENT_ISSUE = HandoverReason::PaymentIssue->value;
+    public const REASON_CONTRACT_QUESTION = HandoverReason::ContractQuestion->value;
 
     public const REASON_LOW_CONFIDENCE = HandoverReason::LowConfidence->value;
 

@@ -11,18 +11,18 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 #[Fillable([
-    'cafe_id',
+    'company_id',
     'guest_token',
-    'guest_name',
-    'guest_email',
+    'client_name',
+    'client_email',
     'locale',
     'status',
     'handover_summary',
     'current_scene',
-    'selected_menu_item_id',
-    'selected_seating_area_id',
+    'selected_product_id',
+    'selected_consultant_id',
     'selected_facility_id',
-    'reservation_state',
+    'consultation_state',
     'last_message_at',
 ])]
 class Conversation extends Model
@@ -36,36 +36,36 @@ class Conversation extends Model
     public const STATUS_CLOSED = ConversationStatus::Closed->value;
 
     /**
-     * The UI scenes the guest can be in while talking to the AI Barista.
+     * The UI scenes the guest can be in while talking to the AI SaaS Consultant.
      */
-    public const SCENES = ['home', 'menu', 'menu_item', 'seating', 'seating_area', 'facilities', 'facility_detail', 'reservation', 'handover'];
+    public const SCENES = ['home', 'products', 'product', 'consultants', 'consultant', 'facilities', 'facility_detail', 'consultation', 'handover', 'info'];
 
     protected function casts(): array
     {
         return [
             'last_message_at' => 'datetime',
-            'reservation_state' => 'array',
+            'consultation_state' => 'array',
         ];
     }
 
-    public function cafe(): BelongsTo
+    public function company(): BelongsTo
     {
-        return $this->belongsTo(Cafe::class);
+        return $this->belongsTo(Company::class);
     }
 
-    public function selectedMenuItem(): BelongsTo
+    public function selectedProduct(): BelongsTo
     {
-        return $this->belongsTo(MenuItem::class, 'selected_menu_item_id');
+        return $this->belongsTo(Product::class, 'selected_product_id');
     }
 
-    public function selectedSeatingArea(): BelongsTo
+    public function selectedConsultant(): BelongsTo
     {
-        return $this->belongsTo(SeatingArea::class, 'selected_seating_area_id');
+        return $this->belongsTo(Consultant::class, 'selected_consultant_id');
     }
 
     public function selectedFacility(): BelongsTo
     {
-        return $this->belongsTo(CafeKnowledgeItem::class, 'selected_facility_id');
+        return $this->belongsTo(CompanyKnowledgeItem::class, 'selected_facility_id');
     }
 
     public function messages(): HasMany
@@ -73,9 +73,9 @@ class Conversation extends Model
         return $this->hasMany(ConversationMessage::class)->orderBy('created_at');
     }
 
-    public function reservations(): HasMany
+    public function consultations(): HasMany
     {
-        return $this->hasMany(Reservation::class);
+        return $this->hasMany(Consultation::class);
     }
 
     public function handoverRequest(): HasOne

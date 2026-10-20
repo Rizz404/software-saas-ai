@@ -5,15 +5,15 @@ namespace App\Support;
 use Illuminate\Support\Str;
 
 /**
- * Keyword matching shared by the deterministic searches the AI Barista's tools
- * run over cafe data. No embeddings: a question either matches stored words or
+ * Keyword matching shared by the deterministic searches the AI SaaS Consultant's tools
+ * run over company data. No embeddings: a question either matches stored words or
  * it does not.
  */
 final class SearchText
 {
     /**
      * Lower-cases and drops hyphens and underscores, so "wifi" finds "Wi-Fi"
-     * and "non coffee" finds "non_coffee".
+     * and "cloud native" finds "cloud_native".
      */
     public static function normalize(string $text): string
     {

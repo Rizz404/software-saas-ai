@@ -3,7 +3,7 @@
 namespace App\Modules\Operations\Presenters;
 
 /**
- * The admin menu: where each entry leads and what it is called.
+ * The admin products: where each entry leads and what it is called.
  */
 final class AdminNavigation
 {
@@ -14,10 +14,10 @@ final class AdminNavigation
     {
         return [
             ['route' => 'admin.dashboard', 'label' => 'Dashboard'],
-            ['route' => 'admin.menu-items.index', 'label' => 'Menu'],
-            ['route' => 'admin.seating-areas.index', 'label' => 'Seating areas'],
+            ['route' => 'admin.products.index', 'label' => 'SaaS products'],
+            ['route' => 'admin.consultants.index', 'label' => 'Consultants'],
             ['route' => 'admin.knowledge-items.index', 'label' => 'Knowledge base'],
-            ['route' => 'admin.reservations.index', 'label' => 'Reservations'],
+            ['route' => 'admin.consultations.index', 'label' => 'Demo requests'],
             ['route' => 'admin.handovers.index', 'label' => 'Handovers'],
         ];
     }

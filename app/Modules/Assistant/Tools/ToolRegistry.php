@@ -2,13 +2,13 @@
 
 namespace App\Modules\Assistant\Tools;
 
-use App\Modules\Assistant\Tools\Handlers\CheckTableAvailabilityTool;
-use App\Modules\Assistant\Tools\Handlers\CreateReservationRequestTool;
-use App\Modules\Assistant\Tools\Handlers\GetMenuItemTool;
+use App\Modules\Assistant\Tools\Handlers\CheckConsultationAvailabilityTool;
+use App\Modules\Assistant\Tools\Handlers\CreateConsultationRequestTool;
+use App\Modules\Assistant\Tools\Handlers\GetProductTool;
 use App\Modules\Assistant\Tools\Handlers\RequestHumanHandoverTool;
+use App\Modules\Assistant\Tools\Handlers\SearchCatalogTool;
+use App\Modules\Assistant\Tools\Handlers\SearchConsultantsTool;
 use App\Modules\Assistant\Tools\Handlers\SearchKnowledgeTool;
-use App\Modules\Assistant\Tools\Handlers\SearchMenuTool;
-use App\Modules\Assistant\Tools\Handlers\SearchSeatingTool;
 use Illuminate\Contracts\Container\Container;
 
 /**
@@ -22,11 +22,11 @@ class ToolRegistry
      */
     private const HANDLERS = [
         SearchKnowledgeTool::class,
-        SearchMenuTool::class,
-        GetMenuItemTool::class,
-        SearchSeatingTool::class,
-        CheckTableAvailabilityTool::class,
-        CreateReservationRequestTool::class,
+        SearchCatalogTool::class,
+        GetProductTool::class,
+        SearchConsultantsTool::class,
+        CheckConsultationAvailabilityTool::class,
+        CreateConsultationRequestTool::class,
         RequestHumanHandoverTool::class,
     ];
 

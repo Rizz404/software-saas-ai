@@ -3,7 +3,7 @@
 namespace App\Modules\Assistant\Prompt;
 
 /**
- * Catches an answer that states cafe data the model can only know from a tool:
+ * Catches an answer that states company data the model can only know from a tool:
  * a price, or a card it pretends to show.
  */
 class AnswerValidator

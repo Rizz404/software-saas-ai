@@ -9,7 +9,7 @@ test('plain text becomes a paragraph, and line breaks are kept', () => {
 });
 
 test('bold and italic are rendered', () => {
-    assert.equal(renderChatText('Coba **Latte** yang *creamy*'), '<p>Coba <strong>Latte</strong> yang <em>creamy</em></p>');
+    assert.equal(renderChatText('Coba **Web Platform** yang *creamy*'), '<p>Coba <strong>Web Platform</strong> yang <em>creamy</em></p>');
 });
 
 test('bullet and numbered lists become real lists', () => {
@@ -18,7 +18,7 @@ test('bullet and numbered lists become real lists', () => {
 });
 
 test('headings, code and rules do not leak symbols', () => {
-    assert.equal(renderChatText('## Menu\n---\n```\n`kopi`\n```'), '<p><strong>Menu</strong></p><p>kopi</p>');
+    assert.equal(renderChatText('## Catalog\n---\n```\n`kopi`\n```'), '<p><strong>Catalog</strong></p><p>kopi</p>');
 });
 
 test('markup from the model is escaped', () => {

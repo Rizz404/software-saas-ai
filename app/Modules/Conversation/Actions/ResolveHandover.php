@@ -7,7 +7,7 @@ use App\Models\HandoverRequest;
 use App\Models\User;
 
 /**
- * The team is done with the guest: the AI Barista is back in the conversation.
+ * The team is done with the guest: the AI SaaS Consultant is back in the conversation.
  */
 class ResolveHandover
 {

@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
 /**
- * Create or update an entry of the cafe's approved knowledge base.
+ * Create or update an entry of the company's approved knowledge base.
  */
 class KnowledgeItemRequest extends FormRequest
 {
     /**
-     * A record of another cafe is "not found" before anything is validated.
+     * A record of another company is "not found" before anything is validated.
      */
     public function authorize(): bool
     {

@@ -2,19 +2,19 @@
 
 return [
     'message' => [
-        'intro' => 'Halo, saya ingin mengajukan reservasi meja.',
+        'intro' => 'Software yang tepat, ruang untuk bertumbuh. Jelajahi produk SaaS, bandingkan paket, dan temukan alur kerja Anda bersama konsultan AI.',
         'name' => 'Nama',
         'date' => 'Tanggal',
         'time' => 'Jam',
-        'guests' => 'Tamu',
-        'seating' => 'Area duduk',
-        'occasion' => 'Acara',
-        'special' => 'Permintaan Khusus',
+        'participants' => 'peserta',
+        'consultants' => 'Konsultan',
+        'goal' => 'Tujuan',
+        'special' => 'Kebutuhan',
         'reference' => 'Referensi',
     ],
     'subject' => [
-        'reservation' => 'Reservasi meja',
-        'staff' => 'Pertanyaan untuk tim kafe',
-        'staff_message' => 'Halo, saya ingin bicara dengan tim kafe.',
+        'consultation' => 'Permintaan demo produk Software SaaS AI',
+        'staff' => 'Permintaan demo produk Software SaaS AI',
+        'staff_message' => 'Permintaan demo produk Software SaaS AI',
     ],
 ];

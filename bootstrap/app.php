@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Middleware\AssignRequestId;
-use App\Http\Middleware\ResolveCafe;
+use App\Http\Middleware\ResolveCompany;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -15,7 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->prepend(AssignRequestId::class);
-        $middleware->alias(['cafe' => ResolveCafe::class]);
+        $middleware->alias(['company' => ResolveCompany::class]);
 
         $middleware->redirectGuestsTo(fn () => route('admin.login'));
     })

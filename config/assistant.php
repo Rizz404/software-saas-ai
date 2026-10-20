@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | AI Barista
+    | AI SaaS Consultant
     |--------------------------------------------------------------------------
     |
     | Budgets for one guest turn against the self-hosted, OpenAI-compatible

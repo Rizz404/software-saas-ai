@@ -2,19 +2,19 @@
 
 return [
     'message' => [
-        'intro' => 'こんにちは。テーブルのご予約をリクエストしたいです。',
+        'intro' => '適切なソフトウェアで、成長の余地を。SaaS製品とプランを比較し、AIコンサルタントと業務に合う仕組みを見つけましょう。',
         'name' => 'お名前',
         'date' => '日付',
         'time' => '時間',
-        'guests' => '人数',
-        'seating' => '席',
-        'occasion' => 'ご利用シーン',
-        'special' => 'ご要望',
+        'participants' => '参加者',
+        'consultants' => '担当者',
+        'goal' => '目的',
+        'special' => 'ご要件',
         'reference' => '予約番号',
     ],
     'subject' => [
-        'reservation' => 'テーブル予約',
-        'staff' => 'スタッフへのご相談',
-        'staff_message' => 'こんにちは。カフェのスタッフとお話ししたいです。',
+        'consultation' => 'Software SaaS AI 製品デモ',
+        'staff' => 'Software SaaS AI 製品デモ',
+        'staff_message' => 'Software SaaS AI 製品デモ',
     ],
 ];

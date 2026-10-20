@@ -16,14 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         if (app()->environment('local', 'testing')) {
             $this->call([
-                UserSeeder::class,
-                CafeSeeder::class,
-                CafeUserSeeder::class,
-                MenuItemSeeder::class,
-                SeatingAreaSeeder::class,
-                SeatingImageSeeder::class,
-                TableInventorySeeder::class,
-                CafeKnowledgeItemSeeder::class,
+                CompanySeeder::class,
+                ProductSeeder::class,
+                ConsultantSeeder::class,
+                ConsultantImageSeeder::class,
+                ConsultationSlotSeeder::class,
+                CompanyKnowledgeItemSeeder::class,
             ]);
         }
     }

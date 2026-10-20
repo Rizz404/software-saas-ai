@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Gate;
 class ReplyToHandoverRequest extends FormRequest
 {
     /**
-     * A record of another cafe is "not found" before anything is validated.
+     * A record of another company is "not found" before anything is validated.
      */
     public function authorize(): bool
     {

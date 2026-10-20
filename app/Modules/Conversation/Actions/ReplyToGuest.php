@@ -2,7 +2,7 @@
 
 namespace App\Modules\Conversation\Actions;
 
-use App\Models\Cafe;
+use App\Models\Company;
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
 use App\Modules\Assistant\Gateway\ChatCompletionRequest;
@@ -17,7 +17,7 @@ use App\Modules\Assistant\Tools\ToolRegistry;
 use App\Modules\Conversation\Support\ContentGuard;
 
 /**
- * Orchestrates one guest turn: runs the tool-use loop against a single cafe's
+ * Orchestrates one guest turn: runs the tool-use loop against a single company's
  * data through the model gateway, persists the conversation, and returns the
  * assistant message (with any UI payload to render).
  */
@@ -32,7 +32,7 @@ class ReplyToGuest
         private readonly AnswerValidator $validator,
     ) {}
 
-    public function handle(Cafe $cafe, Conversation $conversation, string $guestMessage): ConversationMessage
+    public function handle(Company $company, Conversation $conversation, string $guestMessage): ConversationMessage
     {
         $guestRecord = $conversation->messages()->create([
             'role' => ConversationMessage::ROLE_GUEST,
@@ -42,7 +42,7 @@ class ReplyToGuest
         if ($conversation->isHandedOver()) {
             return $conversation->messages()->create([
                 'role' => ConversationMessage::ROLE_SYSTEM,
-                'content' => 'This conversation is with the cafe team now. A team member will respond shortly.',
+                'content' => 'This conversation is with the company team now. A team member will respond shortly.',
             ]);
         }
 
@@ -51,7 +51,7 @@ class ReplyToGuest
         }
 
         try {
-            return $this->answer($cafe, $conversation);
+            return $this->answer($company, $conversation);
         } catch (\Throwable $e) {
             // The guest keeps the text on screen and can retry; leaving it here would duplicate it.
             $guestRecord->delete();
@@ -78,14 +78,14 @@ class ReplyToGuest
         return (string) $conversation->messages()->where('role', ConversationMessage::ROLE_GUEST)->latest('id')->value('content');
     }
 
-    private function answer(Cafe $cafe, Conversation $conversation): ConversationMessage
+    private function answer(Company $company, Conversation $conversation): ConversationMessage
     {
-        $context = new ToolContext($cafe, $conversation, $conversation->locale);
+        $context = new ToolContext($company, $conversation, $conversation->locale);
         $definitions = $this->registry->definitions();
 
         $messages = [
-            ['role' => 'system', 'content' => $this->prompt->systemPrompt($cafe, $conversation)],
-            ...$this->prompt->withScopeReminder($this->history($conversation), $cafe, $conversation->locale),
+            ['role' => 'system', 'content' => $this->prompt->systemPrompt($company, $conversation)],
+            ...$this->prompt->withScopeReminder($this->history($conversation), $company, $conversation->locale),
         ];
 
         $toolLog = [];

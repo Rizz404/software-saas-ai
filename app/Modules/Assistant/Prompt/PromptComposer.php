@@ -2,10 +2,10 @@
 
 namespace App\Modules\Assistant\Prompt;
 
-use App\Models\Cafe;
+use App\Models\Company;
 use App\Models\Conversation;
+use App\Modules\Consultation\Support\ConsultationAvailability;
 use App\Modules\Conversation\Support\ContentGuard;
-use App\Modules\Reservation\Support\TableAvailability;
 
 /**
  * Assembles what the model is told on every turn: the system prompt with its
@@ -18,23 +18,23 @@ class PromptComposer
 {
     public function __construct(
         private readonly ContentGuard $guard,
-        private readonly TableAvailability $availability,
+        private readonly ConsultationAvailability $availability,
         private readonly PromptLibrary $library,
     ) {}
 
-    public function systemPrompt(Cafe $cafe, Conversation $conversation): string
+    public function systemPrompt(Company $company, Conversation $conversation): string
     {
         $system = $this->library->load('system');
         $variables = [
-            'cafe_name' => $cafe->name,
-            'city' => (string) $cafe->city,
-            'country' => (string) $cafe->country,
+            'company_name' => $company->name,
+            'city' => (string) $company->city,
+            'country' => (string) $company->country,
             'locale_name' => $system['languages'][$conversation->locale] ?? $system['fallback_language'],
-            'currency' => (string) $cafe->currency,
-            'today' => now($cafe->timezone)->toDateString(),
-            'opening' => substr((string) $cafe->opening_time, 0, 5).'–'.substr((string) $cafe->closing_time, 0, 5),
-            'slots' => collect($this->availability->slotsFor($cafe))
-                ->map(fn (string $slot) => TableAvailability::slotRange($slot))
+            'currency' => (string) $company->currency,
+            'today' => now($company->timezone)->toDateString(),
+            'opening' => substr((string) $company->opening_time, 0, 5).'–'.substr((string) $company->closing_time, 0, 5),
+            'slots' => collect($this->availability->slotsFor($company))
+                ->map(fn (string $slot) => ConsultationAvailability::slotRange($slot))
                 ->implode(', '),
         ];
 
@@ -58,7 +58,7 @@ class PromptComposer
      * @param  string  $fallbackLocale  the page language, used when the message has no clear one
      * @return list<array{role: string, content: string}>
      */
-    public function withScopeReminder(array $history, Cafe $cafe, string $fallbackLocale): array
+    public function withScopeReminder(array $history, Company $company, string $fallbackLocale): array
     {
         $last = array_key_last($history);
 
@@ -71,7 +71,7 @@ class PromptComposer
 
         $history[$last]['content'] .= "\n\n".$this->library->render($reminder['scope'], [
             'language' => $language,
-            'cafe_name' => $cafe->name,
+            'company_name' => $company->name,
         ]);
 
         return $history;
@@ -84,8 +84,8 @@ class PromptComposer
     private function uiContext(Conversation $conversation): string
     {
         $scene = in_array($conversation->current_scene, Conversation::SCENES, true) ? $conversation->current_scene : 'home';
-        $menuItem = $conversation->selectedMenuItem;
-        $area = $conversation->selectedSeatingArea;
+        $product = $conversation->selectedProduct;
+        $area = $conversation->selectedConsultant;
 
         $scenes = $this->library->load('scenes');
         $labels = $scenes['labels'];
@@ -94,15 +94,15 @@ class PromptComposer
         $lines = [
             $labels['title'],
             $this->library->render($labels['scene'], ['scene' => $scene]),
-            $this->library->render($labels['menu_item'], ['value' => $menuItem ? "{$menuItem->name} (slug: {$menuItem->slug})" : $none]),
-            $this->library->render($labels['seating_area'], ['value' => $area ? "{$area->name} (slug: {$area->slug})" : $none]),
+            $this->library->render($labels['product'], ['value' => $product ? "{$product->name} (slug: {$product->slug})" : $none]),
+            $this->library->render($labels['consultant'], ['value' => $area ? "{$area->name} (slug: {$area->slug})" : $none]),
             $this->library->render($labels['facility'], ['value' => $conversation->selectedFacility?->title ?? $none]),
         ];
 
-        $draft = $conversation->reservation_state;
+        $draft = $conversation->consultation_state;
 
         if (is_array($draft) && $draft !== []) {
-            $lines[] = $this->library->render($labels['reservation_draft'], [
+            $lines[] = $this->library->render($labels['consultation_draft'], [
                 'value' => collect($draft)->map(fn ($value, $key) => "{$key}={$value}")->implode(', '),
             ]);
         }

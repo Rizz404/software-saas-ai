@@ -9,7 +9,7 @@ namespace App\Modules\Experience\Presenters;
 final class StageCopy
 {
     /**
-     * What the AI Barista says when the guest steps into a scene.
+     * What the AI SaaS Consultant says when the guest steps into a scene.
      *
      * @return array<string, string>
      */
@@ -29,7 +29,7 @@ final class StageCopy
     }
 
     /**
-     * Navigation, chat and reservation-summary labels.
+     * Navigation, chat and consultation-summary labels.
      *
      * @return array<string, string>
      */
@@ -49,18 +49,18 @@ final class StageCopy
     }
 
     /**
-     * The reservation wizard's labels, with the guest-facing validation
+     * The consultation wizard's labels, with the guest-facing validation
      * messages it shows beside a field.
      *
      * @return array<string, mixed>
      */
     public static function wizard(string $locale): array
     {
-        return [...trans('reservation.messages', [], $locale), ...trans('stage.wizard', [], $locale)];
+        return [...trans('consultation.messages', [], $locale), ...trans('stage.wizard', [], $locale)];
     }
 
     /**
-     * The cafe picker's labels.
+     * The company picker's labels.
      *
      * @return array<string, string>
      */

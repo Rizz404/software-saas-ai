@@ -31,16 +31,16 @@ class User extends Authenticatable
         ];
     }
 
-    public function cafes(): BelongsToMany
+    public function companies(): BelongsToMany
     {
-        return $this->belongsToMany(Cafe::class, 'cafe_users')
-            ->using(CafeUser::class)
+        return $this->belongsToMany(Company::class, 'company_users')
+            ->using(CompanyUser::class)
             ->withPivot(['role', 'status'])
             ->withTimestamps();
     }
 
-    public function currentCafe(): ?Cafe
+    public function currentCompany(): ?Company
     {
-        return once(fn () => $this->cafes()->wherePivot('status', 'active')->first());
+        return once(fn () => $this->companies()->wherePivot('status', 'active')->first());
     }
 }

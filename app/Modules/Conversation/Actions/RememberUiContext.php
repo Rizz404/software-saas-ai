@@ -2,20 +2,20 @@
 
 namespace App\Modules\Conversation\Actions;
 
-use App\Models\Cafe;
+use App\Models\Company;
 use App\Models\Conversation;
 
 /**
- * Remembers where in the UI the guest is, so the barista can answer for "this
- * drink" or the reservation they are filling in. Only values that exist for
- * this cafe are kept; nothing personal is stored here.
+ * Remembers where in the UI the guest is, so the solution_consultant can answer for "this
+ * service" or the consultation they are filling in. Only values that exist for
+ * this company are kept; nothing personal is stored here.
  */
 class RememberUiContext
 {
     /**
-     * @param  array{scene?: ?string, selected_menu_item?: ?string, selected_seating_area?: ?string, selected_facility?: ?int, reservation?: ?array<string, mixed>}  $context
+     * @param  array{scene?: ?string, selected_product?: ?string, selected_consultant?: ?string, selected_facility?: ?int, consultation?: ?array<string, mixed>}  $context
      */
-    public function handle(Cafe $cafe, Conversation $conversation, array $context): void
+    public function handle(Company $company, Conversation $conversation, array $context): void
     {
         $updates = [];
 
@@ -23,32 +23,32 @@ class RememberUiContext
             $updates['current_scene'] = $context['scene'];
         }
 
-        if (filled($context['selected_menu_item'] ?? null)) {
-            $menuItem = $cafe->menuItems()->where('is_active', true)->where('slug', $context['selected_menu_item'])->first();
+        if (filled($context['selected_product'] ?? null)) {
+            $product = $company->products()->where('is_active', true)->where('slug', $context['selected_product'])->first();
 
-            if ($menuItem) {
-                $updates['selected_menu_item_id'] = $menuItem->id;
+            if ($product) {
+                $updates['selected_product_id'] = $product->id;
             }
         }
 
-        if (filled($context['selected_seating_area'] ?? null)) {
-            $area = $cafe->seatingAreas()->where('is_active', true)->where('slug', $context['selected_seating_area'])->first();
+        if (filled($context['selected_consultant'] ?? null)) {
+            $area = $company->consultants()->where('is_active', true)->where('slug', $context['selected_consultant'])->first();
 
             if ($area) {
-                $updates['selected_seating_area_id'] = $area->id;
+                $updates['selected_consultant_id'] = $area->id;
             }
         }
 
         if (filled($context['selected_facility'] ?? null)) {
-            $facility = $cafe->knowledgeItems()->where('is_active', true)->whereKey($context['selected_facility'])->first();
+            $facility = $company->knowledgeItems()->where('is_active', true)->whereKey($context['selected_facility'])->first();
 
             if ($facility) {
                 $updates['selected_facility_id'] = $facility->id;
             }
         }
 
-        if (array_key_exists('reservation', $context)) {
-            $updates['reservation_state'] = $context['reservation'] ?: null;
+        if (array_key_exists('consultation', $context)) {
+            $updates['consultation_state'] = $context['consultation'] ?: null;
         }
 
         if ($updates !== []) {
