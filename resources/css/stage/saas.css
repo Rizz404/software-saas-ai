@@ -1,0 +1,58 @@
+/* The product studio: a centered canvas, upper capsule navigation and a bottom AI dock. */
+.stage { --gutter: clamp(20px, 3vw, 48px); --panel-top: 168px; --panel-bottom: 112px; --drawer: min(780px, 78vw); }
+.stage-shade { background: linear-gradient(180deg,var(--shade-top),var(--shade-clear) 45%,var(--shade)),linear-gradient(90deg,var(--shade),var(--shade-clear) 52%); }
+.stage-header { border: 0; }
+.company-monogram { border-radius: 13px; background: var(--navy-glass); font-family: var(--font-sans); font-weight: 700; }
+.stage-character { left: 0; right: auto; max-width: 21%; height: min(38vh, 350px); z-index: 4; }
+.stage-tabs { top: 90px; left: 18%; right: var(--gutter); gap: 5px; padding: 5px 8px; border: 1px solid var(--line-glass); border-radius: 30px; background: var(--navy-glass); backdrop-filter: blur(18px); }
+.stage-tabs a { flex: 1; border: 0; border-radius: 24px; padding: 10px 12px; }
+.stage-tabs a[aria-current] { background: var(--cyan); color: var(--navy-deep); }
+.stage-tabs a:hover { background: var(--navy); color: var(--ivory); }
+.stage-tabs a[aria-current]:hover { background: var(--cyan); color: var(--navy-deep); }
+.stage-welcome { top: 172px; left: 22%; right: var(--gutter); width: auto; max-height: calc(100dvh - 280px); overflow-y: auto; padding: clamp(28px,3.8vw,54px); border: 1px solid var(--line-glass); border-radius: 24px 24px 24px 4px; background: var(--navy-glass); }
+.stage-welcome h1 { max-width: 850px; margin-top: 18px; font-size: clamp(35px,4.6vw,70px); }
+.stage-welcome > p { max-width: 670px; margin-top: 20px; }
+.welcome-actions { margin-top: 22px; }
+.stage-action { border-radius: 24px; padding: 13px 20px; }
+.stage-welcome .stage-action { background: var(--cyan); color: var(--navy-deep); }
+.welcome-footnote { margin-top: 20px; }
+.home-product-strip { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin-top: 26px; border-top: 1px solid var(--line-glass); }
+.home-product-strip a { display: flex; gap: 10px; align-items: center; padding: 17px 12px 10px 0; font-size: 11px; }
+.home-product-strip a > span:first-child { color: var(--cyan); font-size: 9px; }
+.home-product-strip a > span:last-child { margin-left: auto; color: var(--cyan); }
+.stage-content { left: 18%; right: var(--gutter); border: 0; border-top: 4px solid var(--cyan); border-radius: 18px; padding: 28px 32px; }
+.stage-subnav { left: 18%; right: var(--gutter); top: 156px; }
+.stage:has(.stage-subnav) { --panel-top: 244px; }
+.solution-card { border-radius: 13px; }
+.solution-card > img { aspect-ratio: 16/9; }
+.solution-card h3 { font-family: var(--font-sans); font-size: 20px; font-weight: 650; }
+.solution-card-body { padding: 18px; }
+.narrator { border-radius: 12px; padding: 12px 16px; }
+.narrator-avatar { width: 48px; height: 48px; }
+.chat-launcher { left: 22%; right: 15%; bottom: 26px; max-width: 730px; margin-inline: auto; min-height: 60px; justify-content: flex-start; border-radius: 34px; background: var(--paper); color: var(--ink); padding: 16px 28px; border-color: var(--line-glass); }
+.chat-launcher-arrow { margin-left: auto; color: var(--terra); }
+.chat-log { top: 158px; bottom: 104px; border-radius: 24px 24px 16px 16px; padding-bottom: 84px; }
+.chat-bar { bottom: 118px; border-radius: 28px; }
+.chat-log-header { background: var(--paper); }
+.chat-draft-dialog { bottom: 198px; }
+.stage:has(.stage-chat.is-open) .stage-image { animation: none; }
+.stage-demo-note { bottom: 7px; left: 22%; max-width: 70%; font-size: 9px; }
+.product-plans { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line); }
+.product-plans h3 { margin: 8px 0 20px; font: 500 28px/1.2 var(--font-display); }
+.plan-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+.plan-card { display: flex; flex-direction: column; min-width: 0; position: relative; padding: 22px; border-radius: 14px; border: 1px solid var(--line-strong); background: var(--paper-soft); }
+.plan-card.is-featured { border: 2px solid var(--terra); background: var(--terra-soft); }
+.plan-index { font-size: 10px; letter-spacing: .15em; color: var(--ink-faint); }
+.plan-card h4 { margin-top: 8px; font-size: 19px; font-weight: 650; }
+.plan-price { margin-top: 22px; font-size: clamp(20px,2.2vw,30px); font-weight: 650; letter-spacing: -.04em; }
+.plan-period { font-size: 10px; line-height: 1.6; color: var(--ink-soft); }
+.plan-seats { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line-strong); font-size: 12px; font-weight: 600; }
+.plan-card ul { display: grid; gap: 10px; margin: 17px 0 24px; font-size: 11px; color: var(--ink-soft); }
+.plan-card li { display: flex; align-items: flex-start; gap: 7px; }
+.plan-card li::before { content: '✓'; color: var(--terra); }
+.plan-card .stage-action { margin-top: auto; padding: 11px 10px; font-size: 11px; }
+.opening-panel { top: 20%; left: 22%; right: var(--gutter); width: auto; padding: 44px; max-height: calc(100dvh - 260px); border-radius: 24px; background: var(--navy-glass); border-color: var(--line-glass); }
+.opening-panel h1 { font-size: clamp(40px,5.8vw,86px); }
+.opening-enter { left: 22%; right: var(--gutter); bottom: 60px; }
+.opening-button { border-radius: 32px; background: var(--cyan); color: var(--navy-deep); }
+.stage[data-scene="opening"] .stage-character { left: 0; right: auto; height: min(53vh,520px); max-width: 30%; }

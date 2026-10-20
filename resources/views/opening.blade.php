@@ -3,21 +3,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cafe AI</title>
+    <title>Software SaaS AI</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     @fonts
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="stage-page antialiased" style="--barista-image: url('{{ $avatarImage }}'); --stage-focus: {{ $backdrop['focus'] }}; --stage-focus-mobile: {{ $backdrop['focusMobile'] }}">
-    <main class="stage">
-        <div class="stage-loader" data-stage-loader role="status"><span class="cafe-monogram" aria-hidden="true">C</span><p>{{ $opening['loading'] }}</p></div>
+<body class="stage-page antialiased" style="--solution_consultant-image: url('{{ $avatarImage }}'); --stage-focus: {{ $backdrop['focus'] }}; --stage-focus-mobile: {{ $backdrop['focusMobile'] }}">
+    <main class="stage" data-stage data-scene="opening">
+        <div class="stage-loader" data-stage-loader role="status"><span class="company-monogram" aria-hidden="true">S</span><p>{{ $opening['loading'] }}</p></div>
         <img src="{{ $backdrop['image'] }}" alt="" class="stage-image" fetchpriority="high">
         <div class="stage-shade"></div>
-        <img src="{{ $backdrop['character'] }}" alt="" class="stage-character" data-anchor="left">
+        <img src="{{ $backdrop['character'] }}" alt="" class="stage-character" data-anchor="right">
 
         <header class="stage-header">
             <span class="flex min-w-0 items-center gap-3">
-                <span class="cafe-monogram" aria-hidden="true">C</span>
-                <span class="block truncate font-semibold tracking-tight">Cafe AI</span>
+                <span class="company-monogram" aria-hidden="true">S</span>
+                <span class="block truncate font-semibold tracking-tight">Software SaaS AI</span>
             </span>
             <div class="stage-tools">
                 <x-sound-toggle :on="$opening['sound_on']" :off="$opening['sound_off']" />
@@ -30,18 +31,18 @@
         </header>
 
         <section class="opening-panel" aria-labelledby="opening-title">
-            <p class="stage-eyebrow">AI BARISTA</p>
-            <h1 id="opening-title">{{ $opening['welcome'] }}<br><em>Cafe AI</em></h1>
+            <p class="stage-eyebrow">AI SAAS CONSULTANT</p>
+            <h1 id="opening-title">{{ $opening['welcome'] }}<br><em>Software SaaS AI</em></h1>
             <p class="opening-tagline">{{ $opening['tagline'] }}</p>
 
-            @if ($cafes->count() === 1)
+            @if ($companies->count() === 1)
                 @php
-                    $cafeSlug = $cafes->first()->slug;
+                    $companySlug = $companies->first()->slug;
                     $openingLinks = [
-                        'menu' => route('cafe.menu', ['cafeSlug' => $cafeSlug, 'lang' => $locale]),
-                        'seating' => route('cafe.seating', ['cafeSlug' => $cafeSlug, 'lang' => $locale]),
-                        'reservation' => route('cafe.reservation', ['cafeSlug' => $cafeSlug, 'lang' => $locale]),
-                        'staff' => route('cafe.staff', ['cafeSlug' => $cafeSlug, 'lang' => $locale]),
+                        'products' => route('company.products', ['companySlug' => $companySlug, 'lang' => $locale]),
+                        'consultants' => route('company.consultants', ['companySlug' => $companySlug, 'lang' => $locale]),
+                        'consultation' => route('company.consultation', ['companySlug' => $companySlug, 'lang' => $locale]),
+                        'staff' => route('company.staff', ['companySlug' => $companySlug, 'lang' => $locale]),
                     ];
                 @endphp
                 <ul class="opening-links">
@@ -53,9 +54,9 @@
         </section>
 
         <div class="opening-enter">
-            @forelse ($cafes as $cafe)
-                <a href="{{ route('cafe.show', ['cafeSlug' => $cafe->slug, 'lang' => $locale]) }}" class="opening-button" data-stage-exit>
-                    {{ str_replace(':name', $cafe->name, $opening['enter']) }} <span aria-hidden="true">→</span>
+            @forelse ($companies as $company)
+                <a href="{{ route('company.show', ['companySlug' => $company->slug, 'lang' => $locale]) }}" class="opening-button" data-stage-exit>
+                    {{ str_replace(':name', $company->name, $opening['enter']) }} <span aria-hidden="true">→</span>
                 </a>
             @empty
                 <p class="opening-empty">{{ $opening['empty'] }}</p>

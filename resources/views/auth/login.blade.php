@@ -1,6 +1,6 @@
 <x-layouts.guest title="Admin Login">
-    <h1 class="font-display text-2xl font-semibold text-primary">Cafe Admin</h1>
-    <p class="mt-1 text-sm text-muted">Sign in to manage your cafe's AI Barista.</p>
+    <h1 class="font-display text-2xl font-semibold text-primary">Company Admin</h1>
+    <p class="mt-1 text-sm text-muted">Sign in to manage your company's AI SaaS Consultant.</p>
 
     @if ($errors->any())
         <x-ui.alert tone="danger" class="mt-4">{{ $errors->first() }}</x-ui.alert>

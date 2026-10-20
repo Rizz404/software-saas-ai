@@ -1,10 +1,10 @@
 /*
- * Cafe AI theme: the single source of visual values for the admin and the
+ * Software SaaS AI theme: the single source of visual values for the admin and the
  * shared UI kit (resources/views/components/ui). Add new tokens here; never
  * introduce colors in those views, in resources/js/ui, or in other
  * stylesheets (npm run lint:ui checks it).
  *
- * The guest-facing stage (presentation.css and the cafe-stage views) is an
+ * The guest-facing stage (presentation.css and the company-stage views) is an
  * illustrated scene with its own art direction and is exempt.
  */
 
@@ -13,18 +13,18 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
     --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
 
-    /* Brand: dark roast on warm milk. */
-    --color-primary: #451a03;
-    --color-primary-hover: #78350f;
-    --color-canvas: #fffbeb99;
+    /* Brand: navy, ivory and cyan. */
+    --color-primary: #10273b;
+    --color-primary-hover: #166e82;
+    --color-canvas: #f2f6f5;
     --color-surface: #ffffff;
-    --color-surface-muted: #fafaf9;
-    --color-surface-hover: #fffbeb80;
-    --color-text: #1c1917;
-    --color-muted: #78716c;
-    --color-subtle: #a8a29e;
-    --color-border: #e7e5e4;
-    --color-border-strong: #d6d3d1;
+    --color-surface-muted: #f0f4f2;
+    --color-surface-hover: #e6f1ef;
+    --color-text: #122c43;
+    --color-muted: #526a77;
+    --color-subtle: #758a94;
+    --color-border: #dce3de;
+    --color-border-strong: #bdcecd;
 
     --color-success: #047857;
     --color-success-soft: #ecfdf5;
@@ -37,7 +37,7 @@
     --color-danger-soft: #fef2f2;
     --color-danger-border: #fecaca;
 
-    --color-overlay: rgb(28 25 23 / 0.5);
+    --color-overlay: rgb(11 28 44 / 0.5);
 
     --radius-control: 0.5rem;
     --radius-card: 0.75rem;

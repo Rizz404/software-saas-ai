@@ -1,4 +1,4 @@
-/* Reservation wizard: five short steps inside the reservation panel. */
+/* Consultation wizard: five short steps inside the consultation panel. */
 
 .wizard {
     margin-top: 4px;
@@ -96,7 +96,7 @@
     padding: 12px 14px;
     border: 1px solid var(--line-strong);
     border-radius: var(--radius-control);
-    background: #fff;
+    background: var(--white);
     font-size: 15px;
 }
 

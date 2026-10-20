@@ -3,7 +3,7 @@
         <x-ui.card flush>
             <div class="border-b border-border px-4 py-3">
                 <p class="font-medium text-text">Conversation</p>
-                <p class="text-xs text-muted">{{ $handover->conversation->guest_name ?? 'Guest' }} · {{ strtoupper($handover->conversation->locale) }}</p>
+                <p class="text-xs text-muted">{{ $handover->conversation->client_name ?? 'Guest' }} · {{ strtoupper($handover->conversation->locale) }}</p>
             </div>
             <div class="max-h-130 space-y-3 overflow-y-auto px-4 py-4">
                 @foreach ($handover->conversation->messages as $message)
@@ -42,7 +42,7 @@
             @if ($handover->status === 'open')
                 <form method="POST" action="{{ route('admin.handovers.resolve', $handover) }}">
                     @csrf
-                    <x-ui.button type="submit" class="w-full">Mark resolved — return to the AI Barista</x-ui.button>
+                    <x-ui.button type="submit" class="w-full">Mark resolved — return to the AI SaaS Consultant</x-ui.button>
                 </form>
             @else
                 <p class="rounded-control border border-border bg-surface px-4 py-2 text-center text-sm text-muted">Resolved {{ $handover->resolved_at?->diffForHumans() }}</p>

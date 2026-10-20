@@ -1,7 +1,7 @@
 {{-- The document shell for every non-stage page: one Vite bundle, CSRF meta, skip link. --}}
 @props([
     'title' => null,
-    'cafeName' => null,
+    'companyName' => null,
 ])
 
 <!DOCTYPE html>
@@ -10,7 +10,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $title ? $title.' — '.($cafeName ?? config('app.name')) : ($cafeName ?? config('app.name')) }}</title>
+    <title>{{ $title ? $title.' — '.($companyName ?? config('app.name')) : ($companyName ?? config('app.name')) }}</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     @fonts
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

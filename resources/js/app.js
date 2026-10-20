@@ -6,8 +6,8 @@ import Alpine from 'alpinejs';
 import { registerUi } from './ui/register.js';
 
 import './sound';
-import './barista';
-import './reservation';
+import './solution_consultant';
+import './consultation';
 import './stage';
 import './narrator';
 

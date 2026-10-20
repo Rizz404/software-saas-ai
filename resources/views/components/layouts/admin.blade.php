@@ -1,6 +1,6 @@
 {{--
-    The frame of every admin page. The menu comes from the server (navItems, set
-    by a view composer); the cafe name comes from the signed-in account.
+    The frame of every admin page. The products comes from the server (navItems, set
+    by a view composer); the company name comes from the signed-in account.
     Slots: default, actions (buttons beside the heading). Shows session('status')
     as a success alert.
 --}}
@@ -9,13 +9,13 @@
     'navItems' => [],
 ])
 
-@php($cafe = auth()->user()?->currentCafe())
+@php($company = auth()->user()?->currentCompany())
 
-<x-layouts.base :title="$title" :cafe-name="$cafe?->name">
+<x-layouts.base :title="$title" :company-name="$company?->name">
     <div x-data="adminShell" class="min-h-dvh lg:pl-56">
         {{-- Desktop sidebar --}}
         <aside class="fixed inset-y-0 left-0 z-30 hidden w-56 flex-col border-r border-border bg-surface lg:flex">
-            <x-navigation.brand :name="$cafe?->name" class="border-b border-border px-4 py-4" />
+            <x-navigation.brand :name="$company?->name" class="border-b border-border px-4 py-4" />
             <div class="flex-1 overflow-y-auto px-2 py-4">
                 <x-navigation.admin-sidebar :items="$navItems" />
             </div>
@@ -28,11 +28,11 @@
         {{-- Mobile drawer (< lg) --}}
         <div x-show="drawerOpen" x-cloak x-on:keydown.escape.window="closeDrawer()" class="fixed inset-0 z-40 lg:hidden">
             <div class="fixed inset-0 bg-overlay" x-on:click="closeDrawer()" aria-hidden="true"></div>
-            <div id="admin-drawer" role="dialog" aria-modal="true" aria-label="Admin menu" class="fixed inset-y-0 left-0 flex w-64 max-w-[85vw] flex-col bg-surface shadow-xl">
+            <div id="admin-drawer" role="dialog" aria-modal="true" aria-label="Admin products" class="fixed inset-y-0 left-0 flex w-64 max-w-[85vw] flex-col bg-surface shadow-xl">
                 <div class="flex items-center justify-between border-b border-border px-4 py-4">
-                    <x-navigation.brand :name="$cafe?->name" />
+                    <x-navigation.brand :name="$company?->name" />
                     <button type="button" x-on:click="closeDrawer()" class="-m-1 rounded-control p-1 text-muted hover:text-text">
-                        <x-ui.icon name="x-mark" label="Close menu" />
+                        <x-ui.icon name="x-mark" label="Close products" />
                     </button>
                 </div>
                 <div class="flex-1 overflow-y-auto px-2 py-4">
@@ -54,9 +54,9 @@
                     x-bind:aria-expanded="drawerOpen"
                     class="-ml-1 rounded-control p-2 text-text hover:bg-surface-muted"
                 >
-                    <x-ui.icon name="bars-3" label="Open menu" />
+                    <x-ui.icon name="bars-3" label="Open products" />
                 </button>
-                <p class="truncate font-display text-base font-semibold text-primary">{{ $cafe?->name }}</p>
+                <p class="truncate font-display text-base font-semibold text-primary">{{ $company?->name }}</p>
             </header>
 
             <main id="main-content" tabindex="-1" class="flex-1 focus:outline-none">

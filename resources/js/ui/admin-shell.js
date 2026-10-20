@@ -1,5 +1,5 @@
 /**
- * Alpine data for the admin frame: the mobile menu drawer.
+ * Alpine data for the admin frame: the mobile products drawer.
  */
 export function adminShell() {
     return {

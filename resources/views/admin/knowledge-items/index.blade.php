@@ -3,7 +3,7 @@
         <x-ui.link-button :href="route('admin.knowledge-items.create')" size="sm">Add entry</x-ui.link-button>
     </x-slot:actions>
 
-    <p class="mb-4 text-sm text-muted">This is the only source the AI Barista is allowed to answer cafe-fact questions from. If it's not here, the AI won't guess.</p>
+    <p class="mb-4 text-sm text-muted">This is the only source the AI SaaS Consultant is allowed to answer company-fact questions from. If it's not here, the AI won't guess.</p>
 
     <x-ui.table :columns="['Category', 'Title', 'Status', '']" :empty="$items->isEmpty()" empty-text="No knowledge base entries yet.">
         @foreach ($items as $item)

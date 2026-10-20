@@ -1,106 +1,12 @@
-/* Opening screen: a title card in the middle, the barista on the left, one big way in. */
-
-.opening-panel {
-    position: absolute;
-    z-index: 4;
-    left: 0;
-    right: 0;
-    margin-inline: auto;
-    top: calc(var(--header) + 24px);
-    width: min(620px, calc(100% - 48px));
-    padding: 32px 36px 30px;
-    border-radius: 32px;
-    background: color-mix(in srgb, var(--paper) 95%, transparent);
-    box-shadow: var(--shadow-card);
-    backdrop-filter: blur(14px);
-    text-align: center;
-}
-
-.opening-panel h1 {
-    margin-top: 12px;
-    font: 600 clamp(34px, 4vw, 54px)/1.08 var(--font-display);
-    letter-spacing: -.02em;
-}
-
-.opening-panel h1 em {
-    font-weight: 400;
-    color: var(--terra);
-}
-
-.opening-tagline {
-    margin: 14px auto 0;
-    max-width: 440px;
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--ink-soft);
-}
-
-.opening-links {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 10px;
-    margin-top: 24px;
-}
-
-.opening-links a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    min-height: 52px;
-    padding: 6px 10px;
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    background: var(--paper-soft);
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1.25;
-    transition: transform .2s var(--ease-cine), background .2s, border-color .2s;
-}
-
-.opening-links a:hover {
-    transform: translateY(-3px);
-    border-color: var(--terra);
-    background: var(--terra-soft);
-}
-
-.opening-links a span:last-child {
-    display: none;
-}
-
-.opening-enter {
-    position: absolute;
-    z-index: 5;
-    inset: auto 0 44px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    padding: 0 16px;
-}
-
-.opening-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    padding: 18px 38px;
-    border-radius: 999px;
-    background: var(--terra);
-    color: var(--paper);
-    font-size: 17px;
-    font-weight: 600;
-    box-shadow: var(--shadow-card);
-    transition: transform .2s var(--ease-cine), background .2s;
-}
-
-.opening-button:hover {
-    background: var(--terra-deep);
-    transform: translateY(-2px);
-}
-
-.opening-empty {
-    padding: 14px 22px;
-    border-radius: 999px;
-    background: var(--paper);
-    font-size: 14px;
-}
+.opening-panel { position:absolute; z-index:4; left:var(--gutter); top:clamp(145px,20vh,220px); width:min(860px,72vw); max-height:calc(100dvh - 270px); overflow-y:auto; padding:clamp(26px,4vw,56px); border-left:3px solid var(--cyan); color:var(--ivory); background:var(--navy-glass); border-radius:0 12px 12px 0; backdrop-filter:blur(16px); }
+.opening-panel .stage-eyebrow { color:var(--cyan); }
+.opening-panel h1 { margin-top:20px; font:400 clamp(40px,5vw,76px)/1.04 var(--font-display); letter-spacing:-.035em; }
+.opening-panel h1 em { color:var(--cyan); font-weight:400; }
+.opening-tagline { margin-top:24px; max-width:580px; font-size:15px; line-height:1.8; color:color-mix(in srgb,var(--ivory) 80%,transparent); }
+.opening-links { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 28px; margin-top:30px; }
+.opening-links a { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:50px; border-top:1px solid color-mix(in srgb,var(--ivory) 20%,transparent); font-size:12px; }
+.opening-links a:hover { color:var(--cyan); }
+.opening-enter { position:absolute; z-index:5; bottom:54px; left:var(--gutter); right:26%; display:flex; flex-wrap:wrap; gap:12px; }
+.opening-button { display:flex; gap:20px; align-items:center; padding:16px 28px; border-radius:6px; color:var(--navy); background:var(--cyan); font-size:13px; font-weight:600; }
+.opening-empty { color:var(--ivory); font-size:14px; }
+.stage[data-scene="opening"] .stage-character { height:47vh; max-width:27%; }

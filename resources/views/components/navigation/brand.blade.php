@@ -1,6 +1,6 @@
 @props([
     'name' => null,
-    'caption' => 'Cafe admin',
+    'caption' => 'Company admin',
 ])
 
 <div {{ $attributes }}>

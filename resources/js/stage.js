@@ -1,14 +1,14 @@
 /**
- * Full-screen stage chrome shared by the opening screen and the cafe:
+ * Full-screen stage chrome shared by the opening screen and the saas:
  * hides the "preparing" loader once the hero image is ready, and eases the
  * scene out before following an "enter" link so moving between screens feels
- * like walking through the cafe rather than loading a page.
+ * like walking through the company rather than loading a page.
  *
- * A link may carry `data-topic`: the question the guest picked from the menu.
- * It is handed to the AI barista, which raises it once the next scene is up
+ * A link may carry `data-topic`: the question the guest picked from the products.
+ * It is handed to the AI solution consultant, which raises it once the next scene is up
  * (or straight away when the guest is already in that scene).
  */
-const TOPIC_KEY = 'barista_pending_topic';
+const TOPIC_KEY = 'saas_consultant_pending_topic';
 
 function initStage() {
     const stage = document.querySelector('.stage');
@@ -47,7 +47,7 @@ function initStage() {
             else sessionStorage.removeItem(TOPIC_KEY);
         } catch { /* private mode: the scene still changes, only the topic is dropped */ }
 
-        // The barista says where she is taking the guest, then the scene
+        // The solution_consultant says where she is taking the guest, then the scene
         // walks forward into the next one.
         if (line && tour) {
             tour.textContent = line;
@@ -56,8 +56,8 @@ function initStage() {
 
         stage.classList.add('is-leaving');
 
-        const chime = window.cafeSound?.isEnabled() ?? false;
-        if (chime) window.cafeSound.play('enter');
+        const chime = window.companySound?.isEnabled() ?? false;
+        if (chime) window.companySound.play('enter');
 
         const hold = reducedMotion ? 0 : line ? 820 : chime ? 560 : 320;
         window.setTimeout(() => { window.location.href = href; }, hold);
@@ -70,11 +70,11 @@ function initStage() {
 
             event.preventDefault();
 
-            // Already in this scene: no walk needed, the barista just takes
+            // Already in this scene: no walk needed, the solution_consultant just takes
             // the topic up where the guest is standing.
             const samePlace = link.pathname === window.location.pathname;
             if (samePlace && link.dataset.topic) {
-                window.dispatchEvent(new CustomEvent('barista:ask', { detail: { message: link.dataset.topic } }));
+                window.dispatchEvent(new CustomEvent('solution_consultant:ask', { detail: { message: link.dataset.topic } }));
                 return;
             }
             if (samePlace) return;
@@ -83,11 +83,11 @@ function initStage() {
         });
     });
 
-    window.cafeStage = { leave };
+    window.companyStage = { leave };
 }
 
 /** The topic the guest picked on the previous scene, if any (read once). */
-window.takePendingBaristaTopic = () => {
+window.takePendingSolutionConsultantTopic = () => {
     try {
         const topic = sessionStorage.getItem(TOPIC_KEY);
         sessionStorage.removeItem(TOPIC_KEY);

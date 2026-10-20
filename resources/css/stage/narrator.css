@@ -1,5 +1,5 @@
 /*
- * The AI barista introducing a scene: a typed line with a speaking avatar. On the
+ * The AI solution consultant introducing a scene: a typed line with a speaking avatar. On the
  * stage it sits inside the speech card; inline it sits inside a panel.
  */
 
@@ -22,10 +22,10 @@
     border-radius: 50%;
     border: 2px solid var(--line-strong);
     background-color: var(--terra-soft);
-    background-image: var(--barista-image);
+    background-image: var(--solution_consultant-image);
     background-repeat: no-repeat;
-    background-position: var(--barista-focus, center);
-    background-size: var(--barista-zoom, cover);
+    background-position: 50% 9%;
+    background-size: 270%;
 }
 
 .narrator-avatar::after {
@@ -91,7 +91,7 @@
 
 .narrator.is-speaking .narrator-wave i {
     opacity: 1;
-    animation: barista-wave .55s ease-in-out infinite alternate;
+    animation: solution_consultant-wave .55s ease-in-out infinite alternate;
     height: 14px;
 }
 
@@ -141,7 +141,7 @@
     display: none;
 }
 
-@keyframes barista-wave {
+@keyframes solution_consultant-wave {
     from { height: 4px; }
     to { height: 14px; }
 }

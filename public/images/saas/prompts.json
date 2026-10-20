@@ -1,0 +1,7 @@
+{
+  "generator": "built-in image_gen",
+  "prompts": {
+    "studio": "Use case: illustration-story. Asset type: full-screen 16:9 illustrated background for Software SaaS AI website. A refined modern software product studio at blue hour, wide architectural interior, navy glass walls, cyan illuminated desk edges, a wall of subtle product analytics screens with abstract charts and no readable text, indoor plants, warm apricot task lights, city skyline through tall windows. Beautiful editorial 3D-meets-digital-painting illustration, thoughtful realistic architectural perspective, rich material detail, quiet premium atmosphere, no people, no logos, no text or watermark. Keep center area uncluttered for website content and upper region calm for top navigation. Landscape 1920x1080.",
+    "consultant": "Use case: illustration-story. Asset type: transparent character cutout for Software SaaS AI site. A friendly professional Indonesian woman software solutions consultant in her early thirties, navy tailored jacket over a pale cyan blouse, holding a slim tablet in one hand and a relaxed open welcoming gesture with the other. Three-quarter length portrait cut cleanly and flat at lower thigh, full head and both hands visible, standing straight. Elegant editorial digital illustration with subtly rendered dimensional shading, warm natural expression, no exaggerated cartoon features. Soft cyan rim lighting consistent with an evening software studio. No text, logos, props beyond tablet, no scenery. Actual transparent alpha background."
+  }
+}

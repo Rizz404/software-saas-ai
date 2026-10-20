@@ -1,4 +1,4 @@
-{{-- The admin menu. "items" is a list of ['route' => ..., 'label' => ...]; the current section is highlighted. --}}
+{{-- The admin products. "items" is a list of ['route' => ..., 'label' => ...]; the current section is highlighted. --}}
 @props([
     'items',
 ])

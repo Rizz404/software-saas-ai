@@ -1,5 +1,5 @@
 /**
- * Plays the barista's reply aloud. The audio is made by the backend (text to
+ * Plays the solution_consultant's reply aloud. The audio is made by the backend (text to
  * speech), fetched as one WAV file and played right away. Every failure is silent:
  * the reply is already on screen, so the guest only loses the voice.
  */

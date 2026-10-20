@@ -1,6 +1,6 @@
 /*
  * Content panels: paper cards on the right, between the header and the board.
- * The barista stays in view on the left; a panel never reaches past 56% of the screen.
+ * The solution_consultant stays in view on the left; a panel never reaches past 56% of the screen.
  */
 
 .stage-panels,
@@ -10,22 +10,7 @@
 }
 
 .stage-content {
-    --panel-w: 760px;
-
-    position: absolute;
-    z-index: 3;
-    right: var(--gutter);
-    top: var(--header);
-    bottom: var(--panel-bottom);
-    width: min(var(--panel-w), 56vw);
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    padding: 28px 32px;
-    border-radius: var(--radius-card);
-    background: var(--paper);
-    color: var(--ink);
-    box-shadow: var(--shadow-card);
-    transition: right .38s var(--ease-cine), width .38s var(--ease-cine);
+    position:absolute; z-index:3; left:var(--gutter); right:24%; top:var(--panel-top); bottom:var(--panel-bottom); width:auto; overflow-y:auto; overscroll-behavior:contain; padding:30px 34px; border-radius:var(--radius-card); border:1px solid var(--line); background:var(--paper); color:var(--ink); box-shadow:var(--shadow-card);
 }
 
 .stage-content[hidden] {
@@ -42,8 +27,7 @@
 
 /* Beside the open drawer, a panel narrows instead of sliding under it. */
 .stage:has(.stage-chat.is-open) .stage-content {
-    right: calc(var(--drawer) + var(--gutter) * 2);
-    width: min(var(--panel-w), calc(100vw - var(--drawer) - 34vw - var(--gutter) * 3));
+    filter:blur(3px);
 }
 
 .stage-content > .stage-eyebrow {
@@ -88,17 +72,7 @@
 }
 
 .stage-action {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    border-radius: 999px;
-    background: var(--terra);
-    color: var(--paper);
-    padding: 13px 22px;
-    font-size: 13.5px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background .2s, transform .2s var(--ease-cine);
+    display:inline-flex; align-items:center; justify-content:center; gap:14px; border-radius:6px; background:var(--terra); color:var(--ivory); padding:13px 20px; font-size:12px; font-weight:600; cursor:pointer; transition:background .2s,transform .2s;
 }
 
 .stage-action:hover {
@@ -112,7 +86,7 @@
     opacity: .55;
 }
 
-/* Detail scene: one dish or seating area at a time, with a quick fade between them. */
+/* Detail scene: one IT service or consultant at a time, with a quick fade between them. */
 .detail-scene:not([hidden]) {
     animation: scene-in .3s ease-out both;
 }
@@ -404,11 +378,10 @@
     margin-top: 34px;
 }
 
-/* Cafe information and talking to the team: shorter cards that hug their content. */
+/* Company information and talking to the team: shorter cards that hug their content. */
 .info-panel,
 .staff-panel {
-    bottom: auto;
-    max-height: calc(100dvh - var(--header) - var(--panel-bottom));
+    bottom:var(--panel-bottom); max-height:none;
 }
 
 .info-panel {
@@ -424,7 +397,7 @@
     font-size: clamp(26px, 2.6vw, 36px);
 }
 
-/* Opening and closing time, read like the two halves of a cafe receipt. */
+/* Opening and closing time, read like the two halves of a company receipt. */
 .info-stay {
     display: flex;
     align-items: stretch;
@@ -543,7 +516,7 @@ a.info-fact:hover {
 #info-tab-faq:checked ~ .info-tablist label[for="info-tab-faq"] {
     background: var(--paper);
     color: var(--ink);
-    box-shadow: 0 1px 3px rgb(58 36 24 / .16);
+    box-shadow: var(--shadow-soft);
 }
 
 #info-tab-general:focus-visible ~ .info-tablist label[for="info-tab-general"],
