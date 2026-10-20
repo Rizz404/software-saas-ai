@@ -26,10 +26,10 @@ class SolutionConsultantSpeechTest extends TestCase
         Storage::fake('local');
 
         config([
-            'products.openrouter.base_url' => 'https://openrouter.test/api/v1',
-            'products.openrouter.api_key' => 'router-key',
-            'products.openrouter.tts_model' => 'google/test-tts',
-            'products.openrouter.tts_voice' => 'Sulafat',
+            'services.openrouter.base_url' => 'https://openrouter.test/api/v1',
+            'services.openrouter.api_key' => 'router-key',
+            'services.openrouter.tts_model' => 'google/test-tts',
+            'services.openrouter.tts_voice' => 'Sulafat',
         ]);
 
         $company = Company::create(['name' => 'Demo', 'slug' => 'demo', 'public_status' => 'published', 'city' => 'Jakarta', 'country' => 'Indonesia', 'currency' => 'IDR', 'default_locale' => 'en']);
@@ -109,7 +109,7 @@ class SolutionConsultantSpeechTest extends TestCase
     public function test_the_solution_consultant_stays_quiet_without_a_voice_configured(): void
     {
         Http::fake();
-        config(['products.openrouter.api_key' => null]);
+        config(['services.openrouter.api_key' => null]);
         $message = $this->say(ConversationMessage::ROLE_ASSISTANT, 'Welcome to Demo!');
 
         $this->postJson('/demo/solution_consultant/speech', $this->payloadFor($message))->assertNoContent();

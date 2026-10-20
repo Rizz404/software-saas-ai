@@ -14,12 +14,12 @@ test('postJson sends JSON with the CSRF token and returns the parsed body', asyn
     stubBrowser(async (url, init) => {
         sent = { url, init };
 
-        return { ok: true, status: 201, json: async () => ({ reference: 'IT-ABC123' }) };
+        return { ok: true, status: 201, json: async () => ({ reference: 'SAAS-ABC123' }) };
     });
 
     const result = await postJson('/demo/consultation', { participants: 2 });
 
-    assert.deepEqual(result, { ok: true, status: 201, body: { reference: 'IT-ABC123' } });
+    assert.deepEqual(result, { ok: true, status: 201, body: { reference: 'SAAS-ABC123' } });
     assert.equal(sent.init.method, 'POST');
     assert.equal(sent.init.headers['X-CSRF-TOKEN'], 'token-123');
     assert.equal(sent.init.body, JSON.stringify({ participants: 2 }));

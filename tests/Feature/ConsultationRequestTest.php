@@ -73,7 +73,7 @@ class ConsultationRequestTest extends TestCase
             ->assertJsonStructure(['reference', 'handover' => ['whatsapp_url', 'phone_url', 'email_url']]);
 
         $consultation = Consultation::firstOrFail();
-        $this->assertStringStartsWith('IT-', $consultation->reference);
+        $this->assertStringStartsWith('SAAS-', $consultation->reference);
         $this->assertSame('discovery', $consultation->goal);
         $this->assertSame('Discuss API integration', $consultation->notes);
         $this->assertSame(1, ConsultationSlot::where('consultant_id', $this->lounge->id)->where('time_slot', '11:00')->value('reserved_sessions'));

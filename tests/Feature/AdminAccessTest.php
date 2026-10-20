@@ -42,7 +42,7 @@ class AdminAccessTest extends TestCase
 
         return Consultation::create([
             'consultant_name_snapshot' => 'Demo Consultant', 'currency_snapshot' => 'IDR', 'duration_minutes' => 60,
-            'reference' => 'IT-FOREIGN', 'company_id' => $this->otherCompany->id, 'consultant_id' => $area->id, 'client_name' => 'Foreign Guest',
+            'reference' => 'SAAS-FOREIGN', 'company_id' => $this->otherCompany->id, 'consultant_id' => $area->id, 'client_name' => 'Foreign Guest',
             'consultation_date' => now()->addDays(3)->toDateString(), 'time_slot' => '11:00', 'participants' => 2,
         ]);
     }
@@ -66,15 +66,15 @@ class AdminAccessTest extends TestCase
         $area = $this->company->consultants()->create(['name' => 'Lounge', 'slug' => 'lounge', 'specialty' => 'solution', 'is_active' => true]);
         Consultation::create([
             'consultant_name_snapshot' => 'Demo Consultant', 'currency_snapshot' => 'IDR', 'duration_minutes' => 60,
-            'reference' => 'IT-MINE', 'company_id' => $this->company->id, 'consultant_id' => $area->id, 'client_name' => 'My Guest',
+            'reference' => 'SAAS-MINE', 'company_id' => $this->company->id, 'consultant_id' => $area->id, 'client_name' => 'My Guest',
             'consultation_date' => now()->addDays(3)->toDateString(), 'time_slot' => '13:00', 'participants' => 2,
         ]);
         $this->foreignConsultation();
 
         $this->actingAs($this->staff)->get(route('admin.consultations.index'))
             ->assertOk()
-            ->assertSee('IT-MINE')
-            ->assertDontSee('IT-FOREIGN');
+            ->assertSee('SAAS-MINE')
+            ->assertDontSee('SAAS-FOREIGN');
     }
 
     public function test_staff_cannot_change_another_companies_consultation(): void
@@ -95,7 +95,7 @@ class AdminAccessTest extends TestCase
         ConsultationSlot::create(['consultant_id' => $area->id, 'consultation_date' => $date, 'time_slot' => '13:00', 'total_sessions' => 1, 'reserved_sessions' => 1]);
         $consultation = Consultation::create([
             'consultant_name_snapshot' => 'Demo Consultant', 'currency_snapshot' => 'IDR', 'duration_minutes' => 60,
-            'reference' => 'IT-MINE', 'company_id' => $this->company->id, 'consultant_id' => $area->id, 'client_name' => 'My Guest',
+            'reference' => 'SAAS-MINE', 'company_id' => $this->company->id, 'consultant_id' => $area->id, 'client_name' => 'My Guest',
             'consultation_date' => $date, 'time_slot' => '13:00', 'participants' => 2,
         ]);
 
@@ -133,11 +133,15 @@ class AdminAccessTest extends TestCase
     public function test_staff_manage_the_products_of_their_own_company_only(): void
     {
         $this->actingAs($this->staff)->post(route('admin.products.store'), [
-            'category' => 'web', 'name' => 'Flat White', 'price' => 34000, 'tags' => 'Managed, Secure', 'prerequisites' => 'api_access', 'is_active' => '1',
+            'category' => 'web', 'name' => 'Flow CRM', 'subscription_plans' => [
+                ['key' => 'starter', 'name' => 'Starter', 'monthly_price' => 249000, 'seats' => 5, 'features' => 'Core workspace'],
+                ['key' => 'growth', 'name' => 'Growth', 'monthly_price' => 749000, 'seats' => 20, 'features' => 'Advanced reports'],
+                ['key' => 'scale', 'name' => 'Scale', 'monthly_price' => 1499000, 'seats' => 50, 'features' => 'Custom roles'],
+            ], 'tags' => 'Managed, Secure', 'prerequisites' => 'api_access', 'is_active' => '1',
         ])->assertRedirect(route('admin.products.index'));
 
         $item = $this->company->products()->firstOrFail();
-        $this->assertSame('flat-white', $item->slug);
+        $this->assertSame('flow-crm', $item->slug);
         $this->assertSame(['managed', 'secure'], $item->tags);
         $this->assertTrue($item->is_active);
 

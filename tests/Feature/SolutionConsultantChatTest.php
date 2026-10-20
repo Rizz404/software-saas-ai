@@ -29,9 +29,9 @@ class SolutionConsultantChatTest extends TestCase
         parent::setUp();
 
         config([
-            'products.local_llm.base_url' => 'http://llm.test',
-            'products.local_llm.api_key' => 'test-key',
-            'products.local_llm.model' => 'test-model',
+            'services.local_llm.base_url' => 'http://llm.test',
+            'services.local_llm.api_key' => 'test-key',
+            'services.local_llm.model' => 'test-model',
         ]);
 
         $this->company = Company::create(['name' => 'Demo', 'slug' => 'demo', 'public_status' => 'published', 'city' => 'Jakarta', 'country' => 'Indonesia', 'currency' => 'IDR', 'default_locale' => 'en']);
