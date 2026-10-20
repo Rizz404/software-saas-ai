@@ -32,6 +32,8 @@ Aset studio dan karakter baru di public/images/saas/{studio,consultant}.png dibu
 
 ## Status
 
-Development, build aset lokal, migrasi SQLite, kompilasi view/config, dan format PHP sudah selesai. Subdomain, mailbox, dan sertifikat SSL sudah dibuat; instalasi aplikasi produksi masih berlangsung. Advisory dependency yang dilaporkan saat pembaruan metadata lockfile sedang ditindaklanjuti sesuai persetujuan pemilik.
+Development dan build lokal/produksi selesai. Migrasi SQLite dan PostgreSQL, kompilasi view/config, serta format PHP berhasil. Subdomain memakai SSL Let's Encrypt dengan redirect HTTPS; /up dan aset build merespons 200. Akun admin dan konten demo dibuat, scheduler Toolkit aktif, dan mode Automatic disiapkan dengan satu webhook GitHub (ping 204). Rahasia admin, database, mailbox, integrasi, serta state deployment tersimpan privat di /root/deploy-secrets/software-saas-ai-*.json, dengan file 600. Tidak ada file runtime milik root pada storage dan bootstrap/cache. Peringatan nonfatal saat menautkan log vhost tidak ditangani dengan perubahan permission subscription bersama.
+
+Metadata lockfile melaporkan dua advisory pada league/commonmark 2.10.1; patch terbatas menunggu persetujuan dependency. Tidak ada audit tersendiri yang dijalankan. Build memberi peringatan opsional fontaine untuk optimasi fallback font, tanpa menggagalkan build atau menambah dependency.
 
 Testing tidak dijalankan karena belum diminta secara eksplisit. Tes PHP/JS, lint/audit tersendiri, QA browser, login, booking, dan provider LLM/TTS/SMTP nyata belum dijalankan. Workflow CI hanya dipicu manual melalui workflow_dispatch dan tidak menjadi gerbang deployment. Tidak ada klaim suite lulus.
