@@ -12,14 +12,13 @@
     "guidance": {
         "home": "Help identify business needs and relevant SaaS products; avoid repeating the welcome.",
         "products": "The visitor is comparing SaaS products. Search by goals, keyword, category, solution tag or indicative budget.",
-        "product": "The visitor is viewing a specific SaaS product. Resolve this/it to the selected service; read its details with get_product. Discuss prerequisites and estimates, and offer a product demo.",
+        "product": "The visitor is viewing a SaaS product. Read details, subscription plans, included seats, and monthly demo pricing with get_product. Offer a product demo; do not imply subscription activation.",
         "consultants": "The visitor is comparing consultant specialties. For live slots, get a date and participant count and use search_consultants.",
         "consultant": "The visitor is viewing a consultant profile. Resolve this consultant to that profile; check date/time availability using check_consultation_availability.",
         "facilities": "The visitor is exploring capabilities and process. Use search_knowledge; do not invent credentials or project outcomes.",
         "facility_detail": "The visitor is reading a specific capability. Use search_knowledge for the selected topic.",
-        "product demo": "The visitor is filling the product demo wizard. Keep already-entered schedule, service and participant details. Help resolve missing fields and explain that submission is pending human confirmation.",
         "handover": "The visitor wants the team. Offer request_human_handover or the contact methods actually configured.",
-        "info": "The visitor is reading company process, business hours, policies and FAQ. Answer from search_knowledge, without inventing company facts."
+        "info": "The visitor is reading company process, business hours, policies and FAQ. Answer from search_knowledge, without inventing company facts.",
+        "consultation": "The visitor is filling the product demo wizard. Keep already-entered schedule, service and participant details. Help resolve missing fields and explain that submission is pending human confirmation."
     }
 }
-

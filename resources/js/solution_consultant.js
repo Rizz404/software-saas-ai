@@ -606,8 +606,8 @@ function initSolutionConsultant() {
         if (pageScene === 'consultation') {
             try {
                 const draft = JSON.parse(sessionStorage.getItem(`saas_demo_draft_${root.dataset.companySlug}`) || 'null');
-                const { consultation_date, time_slot, participants, goal, product_slug, consultant_slug } = draft?.values || {};
-                context.consultation = { consultation_date, time_slot, participants, goal, product_slug, consultant_slug };
+                const { consultation_date, time_slot, participants, goal, product_slug, plan_key, consultant_slug } = draft?.values || {};
+                context.consultation = { consultation_date, time_slot, participants, goal, product_slug, plan_key, consultant_slug };
                 if (consultant_slug) context.selected_consultant = consultant_slug;
                 if (product_slug) context.selected_product = product_slug;
             } catch { /* no draft to share */ }

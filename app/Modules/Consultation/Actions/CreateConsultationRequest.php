@@ -87,7 +87,7 @@ class CreateConsultationRequest
                     'estimated_price' => (float) $service->price,
                     'trial_days' => $service->trial_days,
                     'currency' => $company->currency,
-                    'price_type' => 'estimate',
+                    'price_type' => 'demo_monthly_subscription',
                     'subscription_plans' => $service->subscription_plans,
                     'selected_plan' => $plan,
                 ] : null,

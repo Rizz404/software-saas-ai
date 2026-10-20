@@ -28,11 +28,12 @@ class SendMessageRequest extends FormRequest
             'selected_product' => ['nullable', 'string', 'max:120'],
             'selected_consultant' => ['nullable', 'string', 'max:120'],
             'selected_facility' => ['nullable', 'integer', 'min:1'],
-            'consultation' => ['nullable', 'array'],
+            'consultation' => ['nullable', 'array:consultation_date,time_slot,participants,product_slug,plan_key,goal,consultant_slug'],
             'consultation.consultation_date' => ['nullable', 'date_format:Y-m-d'],
             'consultation.time_slot' => ['nullable', 'regex:/^\d{2}:\d{2}$/'],
             'consultation.participants' => ['nullable', 'integer', 'min:1', 'max:6'],
             'consultation.product_slug' => ['nullable', 'string', 'max:120'],
+            'consultation.plan_key' => ['nullable', Rule::in(['starter', 'growth', 'scale'])],
             'consultation.goal' => ['nullable', 'string', 'max:30'],
             'consultation.consultant_slug' => ['nullable', 'string', 'max:120'],
         ];

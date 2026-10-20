@@ -2,12 +2,12 @@
 
 return [
     'narration' => [
-        'products' => '概算:priceから、:count件のSaaS製品をご覧いただけます。製品を選んで内容をご確認ください。',
-        'products_one' => '製品の概算は:priceです。詳細を開いてご要件を製品デモください。',
+        'products' => ':count件のSaaS製品をご紹介します。参考月額料金はワークスペースあたり:priceからです。製品を選んでプランをご比較ください。',
+        'products_one' => '参考月額料金はワークスペースあたり:priceからです。詳細でプランをご比較ください。',
         'item_delivery_model' => '提供方法は:delivery_modelです。',
         'item_prerequisites' => 'ご準備いただくもの：:list。',
         'item_sold_out' => '現在、この製品の新規案件は受付を停止しています。',
-        'item_price' => '概算は:priceです。最終見積りは合意した範囲に基づきます。',
+        'item_price' => 'ワークスペースあたり参考月額:priceから。利用開始、税金、契約は担当者の確認が必要です。',
         'consultants' => '当社の:count名のコンサルタントを紹介します。まずは:firstから。専門分野を選んで60分のデモをお申し込みください。',
         'consultants_one' => ':firstと60分のデモでご要件を整理しましょう。',
         'seat_participants' => ':min〜:max名のデモに対応します。',
@@ -277,7 +277,7 @@ return [
         'min_spend' => 'プロジェクト予算目安',
         'dateTime' => '日時',
         'contact' => 'ご連絡先',
-        'disclaimer' => 'この申請は管理者の確認待ちです。製品料金は概算で、申請時の内容を保存します。現在のお支払いはありません。',
+        'disclaimer' => 'デモ申請は管理者による確定をお待ちください。製品、プラン、参考月額料金は申請時に保存されます。契約開始や決済は行いません。',
         'available_instead' => '代わりにご利用いただける席：',
         'done_title' => 'リクエストを受け付けました',
         'reference' => '予約番号',
@@ -302,7 +302,7 @@ return [
         'loading' => 'アイデアの空間を準備しています…',
         'sound_on' => 'サウンドオン',
         'sound_off' => 'サウンドオフ',
-        'products' => '製品とソリューション',
+        'products' => ':count件のSaaS製品をご紹介します。参考月額料金はワークスペースあたり:priceからです。製品を選んでプランをご比較ください。',
         'consultants' => '担当者を見る',
         'consultation' => 'デモを申し込む',
         'staff' => 'スタッフにデモ',
