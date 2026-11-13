@@ -89,7 +89,14 @@ class Product extends Model
             return null;
         }
 
-        return str_starts_with($this->image_url, 'http') ? $this->image_url : asset($this->image_url);
+        $imageUrl = $this->image_url;
+        $rasterPath = preg_replace('/\.svg$/', '.webp', $imageUrl);
+
+        if (str_starts_with($imageUrl, 'images/saas/') && is_file(public_path($rasterPath))) {
+            $imageUrl = $rasterPath;
+        }
+
+        return str_starts_with($imageUrl, 'http') ? $imageUrl : asset($imageUrl);
     }
 
     public function hasTag(string $tag): bool
