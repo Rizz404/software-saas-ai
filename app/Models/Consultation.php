@@ -46,11 +46,11 @@ class Consultation extends Model
      * ConsultationGoals a guest can mention so the team can prepare the consultation.
      */
     public const GOALS = [
-        ConsultationGoal::Birthday->value,
-        ConsultationGoal::Date->value,
-        ConsultationGoal::Family->value,
-        ConsultationGoal::Meeting->value,
-        ConsultationGoal::Work->value,
+        ConsultationGoal::Discovery->value,
+        ConsultationGoal::Architecture->value,
+        ConsultationGoal::Automation->value,
+        ConsultationGoal::Modernization->value,
+        ConsultationGoal::Support->value,
     ];
 
     protected function casts(): array
