@@ -42,7 +42,7 @@
                 <a href="{{ route('admin.consultations.index') }}" class="text-xs text-muted hover:underline">View all</a>
             </div>
             <div class="divide-y divide-border">
-                @forelse ($recentDemo requests as $consultation)
+                @forelse ($recentConsultations as $consultation)
                     <div class="px-4 py-3">
                         <p class="text-sm font-medium text-text">{{ $consultation->client_name }} — {{ $consultation->consultant->name }}</p>
                         <p class="mt-0.5 text-xs text-muted">{{ $consultation->consultation_date->toFormattedDateString() }} · {{ $consultation->time_range }} · {{ $consultation->participants }} participants · {{ ucfirst($consultation->status) }}</p>
