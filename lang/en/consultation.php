@@ -8,7 +8,7 @@ return [
         'slot_unknown' => 'Choose an available product demo slot.',
         'slot_past' => 'This slot has already started.',
         'area_unknown' => 'Choose an available consultant.',
-        'product_unknown' => 'That product is unavailable.',
+        'service_unknown' => 'That product is unavailable.',
         'capacity' => 'Product demos support 1–6 participants within the consultant capacity.',
         'unavailable' => 'The consultant is unavailable at that time. Choose another slot.',
         'status_invalid' => 'A cancelled product demo cannot be confirmed again.',

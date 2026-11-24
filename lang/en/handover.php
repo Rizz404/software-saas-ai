@@ -13,7 +13,7 @@ return [
         'reference' => 'Reference',
     ],
     'subject' => [
-        'product demo' => 'Software SaaS AI product demo request',
+        'consultation' => 'Software SaaS AI product demo request',
         'staff' => 'Software SaaS AI product demo request',
         'staff_message' => 'Software SaaS AI product demo request',
     ],
