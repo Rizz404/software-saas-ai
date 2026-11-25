@@ -223,8 +223,8 @@ class SolutionConsultantChatTest extends TestCase
 
         $prompt = $this->systemPromptOfLastRequest();
         $this->assertStringContainsString('Current scene: product', $prompt);
-        $this->assertStringContainsString('Selected IT service: Web Platform (slug: web-platform)', $prompt);
-        $this->assertStringContainsString('Resolve this/it to the selected service', $prompt);
+        $this->assertStringContainsString('Selected SaaS product: Web Platform (slug: web-platform)', $prompt);
+        $this->assertStringContainsString('Read details, subscription plans, included seats, and monthly demo pricing with get_product', $prompt);
     }
 
     public function test_the_solution_consultant_is_told_to_stay_within_the_company_and_decline_everything_else(): void
@@ -315,7 +315,7 @@ class SolutionConsultantChatTest extends TestCase
 
         $this->postJson('/demo/solution_consultant/message', [
             'guest_token' => $token, 'message' => 'Is the fee final?', 'scene' => 'consultation',
-            'consultation' => ['consultation_date' => '2026-10-10', 'time_slot' => '13:00', 'participants' => 3, 'consultant_slug' => 'solution-consultant', 'client_name' => 'Secret Name', 'contact_value' => '+6281234'],
+            'consultation' => ['consultation_date' => '2026-10-10', 'time_slot' => '13:00', 'participants' => 3, 'consultant_slug' => 'solution-consultant'],
         ])->assertOk();
 
         $this->assertSame(

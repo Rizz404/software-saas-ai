@@ -101,7 +101,7 @@ class CompanyStageTest extends TestCase
     {
         $this->get('/demo/products?lang=en')
             ->assertOk()
-            ->assertSee('Explore 2 SaaS products with estimates from IDR 32.000')
+            ->assertSee('Explore 2 SaaS products, with demo prices from IDR 32.000 per workspace per month')
             ->assertSee('Web Platform')
             ->assertSee('Managed Support')
             ->assertDontSee('Retired Service');
@@ -133,7 +133,7 @@ class CompanyStageTest extends TestCase
             ->assertOk()
             ->assertSee('Cloud Consultant')
             ->assertSee('Video call')
-            ->assertSee('No fee for the initial consultation.')
+            ->assertSee('No fee for the initial product demo.')
             ->assertSee('area=cloud-consultant', false);
 
         $this->get('/demo/consultants/nowhere')->assertNotFound();

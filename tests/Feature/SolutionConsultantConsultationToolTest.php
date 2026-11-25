@@ -82,7 +82,7 @@ class SolutionConsultantConsultationToolTest extends TestCase
 
     public function test_the_consultation_tool_needs_a_usable_name_and_contact_before_it_books(): void
     {
-        $company = Company::create(['name' => 'Demo', 'slug' => 'demo', 'public_status' => 'published']);
+        $company = Company::create(['name' => 'Demo', 'slug' => 'demo', 'public_status' => 'published', 'currency' => 'IDR']);
         $area = $company->consultants()->create(['name' => 'Bar', 'slug' => 'ai', 'specialty' => 'ai', 'min_participants' => 1, 'max_participants' => 4, 'is_active' => true]);
         $conversation = Conversation::create(['company_id' => $company->id, 'guest_token' => (string) Str::uuid(), 'locale' => 'en']);
         $date = CarbonImmutable::now($company->timezone)->addDays(2);
