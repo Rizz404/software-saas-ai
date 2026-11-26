@@ -253,7 +253,9 @@ class SolutionConsultantChatTest extends TestCase
 
             return $last['role'] === 'user'
                 && str_starts_with($last['content'], 'Translate this sentence for me')
-                && str_contains($last['content'], '[Reply entirely in English.');
+                && str_contains($last['content'], '[Reply entirely in English.')
+                && str_contains($last['content'], 'SaaS product studio')
+                && ! str_contains($last['content'], 'IT consultancy');
         });
 
         $this->assertSame('Translate this sentence for me', ConversationMessage::where('role', ConversationMessage::ROLE_GUEST)->firstOrFail()->content);
